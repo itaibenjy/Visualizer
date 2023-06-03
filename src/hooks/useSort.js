@@ -80,7 +80,7 @@ export function useSort() {
     }
 
     async function swap(i, j) {
-        await setColors((prevColors) => {
+        setColors((prevColors) => {
             const newColors = [...prevColors];
             newColors[i] = "danger";
             newColors[j] = "danger";
@@ -100,16 +100,7 @@ export function useSort() {
                 return value;
             }
         });
-        await setArray(newArray);
-
-        await setColors(newArray.map((value, index) => {
-            if (value == sorted[index]) {
-                return "success";
-            } else {
-                return "info";
-            }}
-        ));
-
+        setArray(newArray);
 
     }
 
