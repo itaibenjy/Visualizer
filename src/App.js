@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar"
 
 // pages
 import Sudoku from "./pages/Sudoku"
+import Sorting from "./pages/Sorting"
 
 function App() {
   return (
@@ -14,8 +15,9 @@ function App() {
         <div >
           <NavBar /> 
           <Routes>
-            <Route path="/" element={<h1>Home</h1> } />
-            <Route path="/sudoku" element={<Sudoku />} />
+            <Route path="/Visualiser" element={<h1>Home</h1> } />
+            <Route path="/Visualiser/sudoku" element={<Sudoku />} />
+            <Route path="/Visualiser/sorting" element={<Sorting />} />
           </Routes>
         </div>
       </BrowserRouter>

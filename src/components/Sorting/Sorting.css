@@ -1,0 +1,17 @@
+
+table.sorting {
+  border-collapse: collapse;
+  margin: 20px auto;
+  width: 100%;
+  height: 70vh;
+}
+
+td.sorting {
+  text-align: center;
+  outline: none;
+  vertical-align: bottom;
+}
+
+div.sorting {
+    border-width: 0px;
+}

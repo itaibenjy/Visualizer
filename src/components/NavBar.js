@@ -54,18 +54,40 @@ export default function App() {
 
         <MDBCollapse navbar show={showBasic}>
           <MDBNavbarNav className='mr-auto mb-2 mb-sm-0'>
+
+            {/* Home */}
+            <MDBNavbarItem>
+              <Link to="/Visualiser" >
+              <MDBNavbarLink active aria-current='page' href='#'>
+                Home
+              </MDBNavbarLink>
+              </Link>
+            </MDBNavbarItem>
+
+            {/* CSP */}
             <MDBNavbarItem>
               <MDBDropdown>
                 <MDBDropdownToggle className='nav-link' tag='a' role='button'>
                   CSP
                 </MDBDropdownToggle>
                 <MDBDropdownMenu>
-                  <Link to="/sudoku" ><MDBDropdownItem link >Sudoku</MDBDropdownItem></Link>
+                  <Link to="/Visualiser/sudoku" ><MDBDropdownItem link >Sudoku</MDBDropdownItem></Link>
                   <MDBDropdownItem link>Queens Puzzle</MDBDropdownItem>
                   <MDBDropdownItem link>Map Coloring</MDBDropdownItem>
                 </MDBDropdownMenu>
               </MDBDropdown>
             </MDBNavbarItem>
+
+            {/* Sorting */}
+
+            <MDBNavbarItem>
+              <Link to="/Visualiser/sorting" >
+                <MDBNavbarLink href='#'>
+                  Sorting
+                </MDBNavbarLink>
+              </Link>
+            </MDBNavbarItem>
+
             <MDBNavbarItem >
               <MDBContainer className='d-flex align-items-center justify-content-start m-0 mt-2 p-0'>
                 <MDBIcon fas icon="sun" className="mx-2" /><MDBSwitch checked={switchValue} onChange={handleSwitch} /><MDBIcon fas icon="moon" />

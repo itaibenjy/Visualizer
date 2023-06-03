@@ -19,7 +19,7 @@ const SudokuBoard = ({board, setBoard, isSolving}) => {
     <table className="sudoku">
       <tbody>
         {board.map((row, rowIndex) => (
-          <tr key={rowIndex}>
+          <tr className="sudoku" key={rowIndex}>
             {row.map((cell, colIndex) => (
               <SudokuCell 
                 key={colIndex}

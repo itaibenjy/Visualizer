@@ -11,7 +11,7 @@ const SudokuCell = ({ board, row, col, onValueChange }) => {
   };
 
   return (
-    <td>
+    <td className='sudoku'>
       <input 
         type="text" 
         maxLength="1" 

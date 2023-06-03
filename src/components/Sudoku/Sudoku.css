@@ -4,19 +4,13 @@ body {
   font-size: 19px;
 }
 
-h1 {
-  font-size: 28px;
-}
-
-h1, p { text-align: center; }
-
 table.sudoku {
   border: 3px solid black;
   border-collapse: collapse;
   margin: 20px auto;
 }
 
-td {
+td.sudoku {
   height: 2em;
   width: 2em;
   border: 1px solid #CCC;
@@ -32,34 +26,14 @@ td input {
   outline: none;
 }
 
-td:nth-child(3n) {
+td.sudoku:nth-child(3n) {
   border-right: 3px solid black;
 }
 
-tr:nth-child(3n) {
+tr.sudoku:nth-child(3n) {
   border-bottom: 3px solid black;
 }
 
 .buttons {
     text-align: center;
-}
-
-button {
-  color: #3587B1;
-  border: none;
-  font-size: 1em;
-  padding: 10px;
-  margin: 0px 5px;
-  background-color: white;
-  display: inline-block;
-  border: 2px solid #3587B1;
-  transition-property: all;
-  transition-duration: 0.5s;
-  cursor: pointer;
-  outline: none;
-}
-
-button:hover {
-  color: white;
-  background-color: #3587B1;
 }
