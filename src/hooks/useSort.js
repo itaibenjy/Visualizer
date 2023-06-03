@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
-import BubbleSort from '../controllers/bubbleSort';
+import { BubbleSort, MergeSort } from '../controllers/sortController';
 
 export function useSort() {
 
+    const maxSpeed = 500;
     
     const [array, setArray] = useState([]);
     const [sorted, setSorted] = useState([]);
@@ -13,6 +14,7 @@ export function useSort() {
 
     const speedRef = useRef(speed);
     const arrayRef = useRef(array);
+    const colorsRef = useRef(colors);
 
     useEffect(() => {
         const newArray = Array.from({length: size}, () => Math.floor(Math.random() * 1000));
@@ -27,12 +29,15 @@ export function useSort() {
     } , [speed]);
 
     useEffect(() => {
-        resetColors();
         arrayRef.current = array;
     }, [array]);
 
+    useEffect(() => {
+        colorsRef.current = colors;
+    }, [colors]);
+
     function resetColors(){
-        const newColors = array.map((value, index) => value === sorted[index] ? "success" : "info");
+        const newColors = arrayRef.current.map((value, index) => value === sorted[index] ? "success" : "info");
         setColors(newColors);
     }
 
@@ -47,11 +52,20 @@ export function useSort() {
     async function bubbleSort() {
         setIsVisualizing(true);
         await BubbleSort(arrayRef, compare, swap)
+        await resetColors();
+        setIsVisualizing(false);
+    }
+
+    async function mergeSort() {
+        setIsVisualizing(true);
+        await MergeSort(arrayRef, compare, swap)
+        await resetColors();
+        await resetColors();
         setIsVisualizing(false);
     }
 
     async function compare(i, j) {
-        setColors(array.map((value, index) => {
+        await setColors(arrayRef.current.map((value, index) => {
             if (index === i || index === j) {
                 return "warning";
             } else if (value === sorted[index]) {
@@ -59,36 +73,48 @@ export function useSort() {
             } else {
                 return "info";
             }}));
-        if (speedRef.current !== 200){
-            await new Promise(resolve => setTimeout(resolve, 200 - speedRef.current));
+        if (speedRef.current !== maxSpeed){
+            await new Promise(resolve => setTimeout(resolve, maxSpeed - speedRef.current));
         }
 
     }
 
     async function swap(i, j) {
-        setColors((prevColors) => {
+        await setColors((prevColors) => {
             const newColors = [...prevColors];
             newColors[i] = "danger";
             newColors[j] = "danger";
             return newColors;
         });
 
-        if (speedRef.current !== 200){
-            await new Promise(resolve => setTimeout(resolve, 200 - speedRef.current));
+        if (speedRef.current !== maxSpeed){
+            await new Promise(resolve => setTimeout(resolve, maxSpeed - speedRef.current));
         }
 
-        setArray((prevArray) => {
-            const newArray = [...prevArray];
-            const temp = newArray[i];
-            newArray[i] = newArray[j];
-            newArray[j] = temp;
-            return newArray;
+        const newArray = await arrayRef.current.map((value, index) => {
+            if (index === i) {
+                return arrayRef.current[j];
+            } else if (index === j) {
+                return arrayRef.current[i];
+            } else {
+                return value;
+            }
         });
+        await setArray(newArray);
+
+        await setColors(newArray.map((value, index) => {
+            if (value == sorted[index]) {
+                return "success";
+            } else {
+                return "info";
+            }}
+        ));
+
 
     }
 
 
 
 
-    return {array, changeSize, size, colors, bubbleSort, speed, changeSpeed, isVisualizing}
+    return {array, changeSize, size, colors, bubbleSort, mergeSort, speed, changeSpeed, isVisualizing}
 }

@@ -4,14 +4,14 @@ import { useSort } from '../hooks/useSort';
 
 export default function Sorting() {
 
-    const {array, changeSize, size, colors, bubbleSort, speed, changeSpeed, isVisualizing} = useSort();
+    const {array, changeSize, size, colors, bubbleSort, mergeSort, speed, changeSpeed, isVisualizing} = useSort();
 
 
     return (
         <div>
             <h1>Sorting</h1>
             <MDBContainer  className="d-flex justify-content-center">
-                <MDBTooltip title='Array Size' tag='span'>
+                <MDBTooltip title='Array Size' tag='span' placement="bottom">
                     <MDBRange min='5' max='100' value={size} disabled={isVisualizing} onChange={changeSize} id='customRange' label=''/>
                 </MDBTooltip>
             </MDBContainer>
@@ -21,11 +21,11 @@ export default function Sorting() {
             </MDBContainer>
             <SortingBoard array={array} colors={colors}/>
             <MDBContainer  className="d-flex justify-content-center">
-                <MDBTooltip title='Speed Control' tag='span'>
-                    <MDBRange min='0' max='200' value={speed} onChange={changeSpeed} id='customRange' label=''/>
+                <MDBTooltip title='Speed Control' tag='span' placement="bottom">
+                    <MDBRange min='0' max='500' value={speed} onChange={changeSpeed} id='customRange' label=''/>
                 </MDBTooltip>
                 <MDBTooltip title='Start Visualizing' tag='span' placement="bottom">
-                    <MDBBtn floating color="success" disabled={isVisualizing} onClick={bubbleSort}><MDBIcon fas size="lg" icon="play" /></MDBBtn>
+                    <MDBBtn floating color="success" disabled={isVisualizing} onClick={mergeSort}><MDBIcon fas size="lg" icon="play" /></MDBBtn>
                 </MDBTooltip>
             </MDBContainer>
         </div>
