@@ -1,31 +1,47 @@
+import { useState} from "react";
 import SortingBoard from "../components/Sorting/SortingBoard"
-import { MDBContainer, MDBRange, MDBTooltip, MDBBtn, MDBIcon} from "mdb-react-ui-kit"
+import { MDBContainer, MDBRange, MDBTooltip, MDBBtn, MDBIcon, MDBTypography} from "mdb-react-ui-kit"
 import { useSort } from '../hooks/useSort';
+import Select from "../components/Select";
 
 export default function Sorting() {
 
-    const {array, changeSize, size, colors, bubbleSort, mergeSort, speed, changeSpeed, isVisualizing} = useSort();
-
+    const {array, changeSize, size, colors, bubbleSort, mergeSort, insertionSort, selectionSort, speed, changeSpeed, isVisualizing, randomizeArray} = useSort();
+    const Algorithms = {
+        "Bubble Sort": bubbleSort,
+        "Merge Sort": mergeSort,
+        "Insertion Sort": insertionSort,
+        "Selection Sort": selectionSort
+    }
+    const [selected, setSelected] = useState("Bubble Sort");
 
     return (
         <div>
-            <h1>Sorting</h1>
-            <MDBContainer  className="d-flex justify-content-center">
-                <MDBTooltip title='Array Size' tag='span' placement="bottom">
-                    <MDBRange min='5' max='100' value={size} disabled={isVisualizing} onChange={changeSize} id='customRange' label=''/>
-                </MDBTooltip>
+            <MDBTypography className="display-1" tag='h1'>Sorting</MDBTypography>
+            <MDBContainer  className="d-flex justify-content-center my-3">
+                <Select disabled={isVisualizing} children={Object.keys(Algorithms).flat()} selected={selected} setSelected={setSelected}/>
             </MDBContainer>
-            <MDBContainer  className="d-flex justify-content-center">
-                <MDBBtn color="danger" className="mx-2"> Swaping </MDBBtn>
-                <MDBBtn color="warning" > Compering </MDBBtn>
+            <MDBContainer  className="d-flex justify-content-center my-3">
+                <MDBBtn size="sm" color="danger" className="mx-2"></MDBBtn> <MDBTypography className="my-1" variant='h6'>Swaping</MDBTypography>
+                <MDBBtn size="sm" color="warning" className="mx-2"></MDBBtn> <MDBTypography className="my-1" variant="h6">Compering</MDBTypography>
+                <MDBBtn size="sm" color="info" className="mx-2"></MDBBtn> <MDBTypography className="my-1" variant="h6">Unsorted</MDBTypography>
+                <MDBBtn size="sm" color="success" className="mx-2"></MDBBtn> <MDBTypography className="my-1" variant="h6">Sorted</MDBTypography>
+            </MDBContainer>
+            <MDBContainer  className="d-flex justify-content-center my-3">
+                <MDBTypography variant='h6' className="mx-2">Array Size</MDBTypography>
+                <MDBRange  min='5' max='100' value={size} disabled={isVisualizing} onChange={changeSize} id='customRange'/>
             </MDBContainer>
             <SortingBoard array={array} colors={colors}/>
             <MDBContainer  className="d-flex justify-content-center">
-                <MDBTooltip title='Speed Control' tag='span' placement="bottom">
-                    <MDBRange min='0' max='500' value={speed} onChange={changeSpeed} id='customRange' label=''/>
+                <MDBTypography variant='h6' className="mx-2">Sorting Speed</MDBTypography>
+                <MDBRange min='0' max='500' value={speed} onChange={changeSpeed} id='customRange' label=''/>
+            </MDBContainer>
+            <MDBContainer  className="d-flex justify-content-center">
+                <MDBTooltip title='Generate New Board' tag='span' placement="bottom">
+                    <MDBBtn floating color="danger" className="mx-1" disabled={isVisualizing} onClick={randomizeArray}><MDBIcon fas size="lg" icon="random" /></MDBBtn>
                 </MDBTooltip>
                 <MDBTooltip title='Start Visualizing' tag='span' placement="bottom">
-                    <MDBBtn floating color="success" disabled={isVisualizing} onClick={mergeSort}><MDBIcon fas size="lg" icon="play" /></MDBBtn>
+                    <MDBBtn floating color="success" className="mx-1"  disabled={isVisualizing} onClick={Algorithms[selected]}><MDBIcon fas size="lg" icon="play" /></MDBBtn>
                 </MDBTooltip>
             </MDBContainer>
         </div>

@@ -8,7 +8,6 @@ export async function BubbleSort(arrayRef, compare, swap) {
         for (let i = 0; i < arrayRef.current.length - 1 - counter; i++) {
             await compare(i, i + 1);
             if (arrayRef.current[i] > arrayRef.current[i + 1]) {
-                console.log("swap" ,arrayRef.current[i] , arrayRef.current[i+1])
                 await swap(i, i + 1);
                 isSorted = false;
             }
@@ -17,22 +16,48 @@ export async function BubbleSort(arrayRef, compare, swap) {
     }
 }
 
-
-export async function MergeSort(arrayRef, compare, swap) {
-    await mergeHelper(arrayRef, 0, arrayRef.current.length - 1, compare, swap);
+export async function InsertionSort(arrayRef, compare, swap) {
+    for (let i = 1; i < arrayRef.current.length; i++) {
+        let j = i;
+        while (j > 0 && arrayRef.current[j] < arrayRef.current[j - 1]) {
+            await compare(j, j - 1);
+            await swap(j, j - 1);
+            j--;
+        }
+    }
 }
 
-async function mergeHelper(arrayRef, start, end, compare, swap) {
+
+export async function SelectionSort(arrayRef, compare, swap) {
+    for (let i = 0; i < arrayRef.current.length - 1; i++) {
+        let minIndex = i;
+        for (let j = i + 1; j < arrayRef.current.length; j++) {
+            await compare(i, j);
+            if (arrayRef.current[j] < arrayRef.current[minIndex]) {
+                minIndex = j;
+            }
+        }
+        await swap(i, minIndex);
+    }
+}
+
+
+
+export async function MergeSort(arrayRef, compare, mergeSwap) {
+    await mergeHelper(arrayRef, 0, arrayRef.current.length - 1, compare, mergeSwap);
+}
+
+async function mergeHelper(arrayRef, start, end, compare, mergeSwap) {
     if (start >= end) {
         return;
     }
     const middle = Math.floor((start + end) / 2);
-    await mergeHelper(arrayRef, start, middle, compare, swap);
-    await mergeHelper(arrayRef, middle + 1, end, compare, swap);
-    await merge(arrayRef, start, middle, end, compare, swap);
+    await mergeHelper(arrayRef, start, middle, compare, mergeSwap);
+    await mergeHelper(arrayRef, middle + 1, end, compare, mergeSwap);
+    await merge(arrayRef, start, middle, end, compare, mergeSwap);
 }
 
-async function merge(arrayRef, start, middle, end, compare, swap) {
+async function merge(arrayRef, start, middle, end, compare, mergeSwap) {
     let i = start;
     let j = middle + 1;
 
@@ -41,9 +66,7 @@ async function merge(arrayRef, start, middle, end, compare, swap) {
         if (arrayRef.current[i] <= arrayRef.current[j]) {
             i++;
         } else {
-            for (let k = j; k > i; k--) {
-                await swap(k, k - 1);
-            }
+            await mergeSwap(i,j);
 
         i++;
         middle++;

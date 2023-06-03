@@ -1,14 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
-import { BubbleSort, MergeSort } from '../controllers/sortController';
+import { BubbleSort, MergeSort, InsertionSort, SelectionSort } from '../controllers/sortController';
 
 export function useSort() {
 
     const maxSpeed = 500;
     
-    const [array, setArray] = useState([]);
-    const [sorted, setSorted] = useState([]);
-    const [colors,setColors] = useState([]);
     const [size, setSize] = useState(5); // 100 is default size
+    const [array, setArray] = useState(randomArray());
+    const [sorted, setSorted] = useState([...array].sort((a, b) => a - b));
+    const [colors,setColors] = useState(array.map((value, index) => value === sorted[index] ? "success" : "info"));
     const [speed, setSpeed] = useState(50); // 50 is default speed
     const [isVisualizing, setIsVisualizing] = useState(false); 
 
@@ -16,12 +16,36 @@ export function useSort() {
     const arrayRef = useRef(array);
     const colorsRef = useRef(colors);
 
-    useEffect(() => {
+    function randomArray() {
         const newArray = Array.from({length: size}, () => Math.floor(Math.random() * 1000));
+        return newArray;
+    }
+
+    function randomizeArray() {
+        const newArray = randomArray();
+        setArray(newArray);
+        setSorted([...newArray].sort((a, b) => a - b));
+        setColors(newArray.map((value, index) => value === sorted[index] ? "success" : "info"));
+    }
+
+    async function wait() {
+        return await new Promise(resolve => {
+            setTimeout(resolve, maxSpeed - speedRef.current);
+        });
+    }
+
+    async function halfWait() {
+        return await new Promise(resolve => {
+            setTimeout(resolve, (maxSpeed - speedRef.current) / 2);
+        });
+    }
+
+    useEffect(() => {
+        const newArray = randomArray(); 
         const sortedArray = [...newArray].sort((a, b) => a - b);
         setArray(newArray);
         setSorted(sortedArray);
-        resetColors();
+        setColors(newArray.map((value, index) => value === sortedArray[index] ? "success" : "info"));
     }, [size]);
 
     useEffect(() => {
@@ -58,39 +82,40 @@ export function useSort() {
 
     async function mergeSort() {
         setIsVisualizing(true);
-        await MergeSort(arrayRef, compare, swap)
+        await MergeSort(arrayRef, compare, mergeSwap);
         await resetColors();
+        setIsVisualizing(false);
+    }
+
+    async function insertionSort() {
+        setIsVisualizing(true);
+        await InsertionSort(arrayRef, compare, swap)
+        await resetColors();
+        setIsVisualizing(false);
+    }
+
+    async function selectionSort() {
+        setIsVisualizing(true);
+        await SelectionSort(arrayRef, compare, swap)
         await resetColors();
         setIsVisualizing(false);
     }
 
     async function compare(i, j) {
-        await setColors(arrayRef.current.map((value, index) => {
+        setColors(colorsRef.current.map((value, index) => {
             if (index === i || index === j) {
                 return "warning";
-            } else if (value === sorted[index]) {
+            } else if (arrayRef.current[index] === sorted[index]) {
                 return "success";
             } else {
                 return "info";
             }}));
-        if (speedRef.current !== maxSpeed){
-            await new Promise(resolve => setTimeout(resolve, maxSpeed - speedRef.current));
-        }
+        
+        await wait();
 
     }
 
-    async function swap(i, j) {
-        setColors((prevColors) => {
-            const newColors = [...prevColors];
-            newColors[i] = "danger";
-            newColors[j] = "danger";
-            return newColors;
-        });
-
-        if (speedRef.current !== maxSpeed){
-            await new Promise(resolve => setTimeout(resolve, maxSpeed - speedRef.current));
-        }
-
+    async function dswap(i, j) {
         const newArray = await arrayRef.current.map((value, index) => {
             if (index === i) {
                 return arrayRef.current[j];
@@ -100,12 +125,53 @@ export function useSort() {
                 return value;
             }
         });
-        setArray(newArray);
+        await setArray(newArray);
+    }
 
+    async function swap(i, j) {
+        setColors(colorsRef.current.map((value, index) => {
+            if (index === i || index === j) {
+                return "danger";
+            } else if (arrayRef.current[index] === sorted[index]) {
+                return "success";
+            } else {
+                return "info";
+            }}));
+
+        await halfWait();
+
+        await dswap(i, j);
+
+        await halfWait();
+
+    }
+
+    async function mergeSwap(i, j) {
+        setColors(colorsRef.current.map((value, index) => {
+            if (index === i || index === j) {
+                return "danger";
+            } else if (arrayRef.current[index] === sorted[index]) {
+                return "success";
+            } else {
+                return "info";
+            }}));
+        
+        await halfWait();
+
+        const newArray = [...arrayRef.current];
+        for (let k = j; k > i; k--) {
+            var temp = newArray[k];
+            newArray[k] = newArray[k - 1];
+            newArray[k - 1] = temp;
+        }
+        await setArray(newArray);
+
+        await halfWait();
     }
 
 
 
 
-    return {array, changeSize, size, colors, bubbleSort, mergeSort, speed, changeSpeed, isVisualizing}
+
+    return {array, changeSize, size, colors, bubbleSort, mergeSort, insertionSort, selectionSort, speed, changeSpeed, isVisualizing, randomizeArray}
 }
