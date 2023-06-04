@@ -68,7 +68,7 @@ export default function App() {
 
             {/* Sudoku */}
             <MDBNavbarItem>
-              <Link to="/Visualiser/sudoku" >
+              <Link to="/Visualizer/sudoku" >
                 <MDBNavbarLink href='#' style={{color:"var(--mdb-secondary"}}>
                   Sudoku
                 </MDBNavbarLink>
@@ -78,7 +78,7 @@ export default function App() {
 
             {/* Sorting */}
             <MDBNavbarItem>
-              <Link to="/Visualiser/sorting" >
+              <Link to="/Visualizer/sorting" >
                 <MDBNavbarLink href='#' style={{color:"var(--mdb-secondary"}}>
                   Sorting
                 </MDBNavbarLink>
