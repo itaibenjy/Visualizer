@@ -43,7 +43,7 @@ export default function App() {
     <MDBNavbar expand='sm' sticky>
       <MDBContainer fluid>
 
-        <Link to="/Visualiser" >
+        <Link to="/Visualizer" >
         <MDBNavbarBrand href='#'>
             <img
               src={logo}
