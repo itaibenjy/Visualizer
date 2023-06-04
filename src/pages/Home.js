@@ -11,10 +11,10 @@ export default function Home() {
         <MDBContainer>
             <div class="row flex-lg-row align-items-center justify-content-center g-5 py-5">
                 <div class="col-lg-6">
-                    <h1 class="display-5 fw-bold lh-1 mb-4">Welcome to Visualiser</h1>
+                    <h1 class="display-5 fw-bold lh-1 mb-4">Welcome to Visualizer</h1>
                     <h3 class="fw-bold lh-1 my-3" style={{fontFamily: "Monomania"}}> My Personal Exploration into Algorithms and Programming</h3>
                     <p class="lead my-2">
-                        Programming, at its core, is about learning, problem-solving, and continuous growth. As a Software Engineering student, I started Visualiser as a personal project to help me better understand and appreciate the intricacies of algorithms.
+                        Programming, at its core, is about learning, problem-solving, and continuous growth. As a Software Engineering student, I started Visualizer as a personal project to help me better understand and appreciate the intricacies of algorithms.
                     </p>
                     <p class="lead my-2">
                         Here, I share my ongoing learning journey with you, visualizing algorithms in a way that makes them more approachable and comprehensible.
@@ -51,7 +51,7 @@ export default function Home() {
             <div class="row flex-lg-row-reverse align-items-center justify-content-center g-5 py-5">
                     <h3 class="fw-bold lh-1 my-3 mx-10 text-center" style={{fontFamily: "Monomania"}}> Hi there, I'm Itai Benjamin, a budding programmer on a mission to enhance my understanding of algorithms and React.</h3>
                     <p class="lead my-2 mx-auto text-center">
-                       As much as Visualiser is about my personal exploration, it's also a demonstration of my skills and passion for Software Engineering. Currently, I'm on the lookout for new job opportunities that will allow me to grow and contribute.
+                       As much as Visualizer is about my personal exploration, it's also a demonstration of my skills and passion for Software Engineering. Currently, I'm on the lookout for new job opportunities that will allow me to grow and contribute.
                     </p>
                     <p class="lead my-2 mx-5 text-center">
                         As I navigate through this vast sea of computational logic, I'll keep adding more to this collection.If you're interested in my work and have an opening in your organization, or simply want to discuss algorithms and programming, I would be thrilled to connect with you. Let's make something great together!

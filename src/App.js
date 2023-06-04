@@ -17,9 +17,9 @@ function App() {
         <div >
           <NavBar /> 
           <Routes>
-            <Route path="/Visualiser" element={<Home />} />
-            <Route path="/Visualiser/sudoku" element={<Sudoku />} />
-            <Route path="/Visualiser/sorting" element={<Sorting />} />
+            <Route path="/Visualizer" element={<Home />} />
+            <Route path="/Visualizer/sudoku" element={<Sudoku />} />
+            <Route path="/Visualizer/sorting" element={<Sorting />} />
           </Routes>
           <Fotter />
         </div>
