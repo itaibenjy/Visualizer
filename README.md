@@ -14,11 +14,12 @@ Here, I share my ongoing learning journey with you, visualizing algorithms in a 
 
 I've spent countless hours diving into the world of Sudoku and Sorting algorithms, turning them into interactive visualizations. Using React, I've not only been able to better understand these algorithms but also to improve my coding skills. This is an ongoing journey, and every step brings a new lesson.
 
+![Bootstrap Themes](/src/assets/images/Screenshot-Sudoku.png)
+
 ## What's on the Horizon?
 
 Next on my journey, I'm steering towards the labyrinth of Pathfinding Algorithms. From Dijkstra's Algorithm to A\* Search, I'm excited to dig deeper and share my learning progress with you. Keep an eye out for my upcoming explorations!
 
-![Bootstrap Themes](/src/assets/images/Screenshot-Sudoku.png)
 
 ## Hi there, I'm Itai Benjamin, a budding programmer on a mission to enhance my understanding of algorithms and React.
 
