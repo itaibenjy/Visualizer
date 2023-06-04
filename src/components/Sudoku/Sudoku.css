@@ -11,16 +11,17 @@ table.sudoku {
 }
 
 td.sudoku {
-  width: 1.9em;
-  height: 1.9em;
+  width: min(7vw, 7vh);
+  height: min(7vw, 7vh);
   border: 1px solid #CCC;
   text-align: center;
   outline: none;
 }
 
 td input {
-  font-size: 1em;
-  width: 0.5em;
+  font-size: min(5vw, 5vh);
+  width: 100%;
+  height: 100%;
   border: none;
   text-align: center;
   outline: none;

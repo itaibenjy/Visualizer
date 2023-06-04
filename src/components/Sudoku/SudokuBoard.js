@@ -1,7 +1,7 @@
 import './Sudoku.css';
 import SudokuCell from './SudokuCell';
 
-const SudokuBoard = ({board, setBoard, isSolving}) => {
+const SudokuBoard = ({board, setBoard, isSolving, boardStyle}) => {
 
 
   const handleValueChange = (row, col, value) => {
@@ -22,6 +22,7 @@ const SudokuBoard = ({board, setBoard, isSolving}) => {
           <tr className="sudoku" key={rowIndex}>
             {row.map((cell, colIndex) => (
               <SudokuCell 
+                style={boardStyle[rowIndex][colIndex]}
                 key={colIndex}
                 board={board} 
                 row={rowIndex}

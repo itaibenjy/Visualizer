@@ -27,7 +27,7 @@ export default function Sorting() {
                 <MDBBtn size="sm" color="info" className="mx-2"></MDBBtn> <MDBTypography className="my-1" tag='h6'>Unsorted</MDBTypography>
                 <MDBBtn size="sm" color="success" className="mx-2"></MDBBtn> <MDBTypography className="my-1" tag='h6'>Sorted</MDBTypography>
             </MDBContainer>
-            <MDBContainer  className="d-flex justify-content-center my-3">
+            <MDBContainer  className="d-flex justify-content-center mt-3">
                 <MDBTypography variant='h6' className="mx-2">Array Size</MDBTypography>
                 <MDBRange  min='5' max='100' value={size} disabled={isVisualizing} onChange={changeSize} id='customRange'/>
             </MDBContainer>

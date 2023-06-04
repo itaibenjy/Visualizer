@@ -8,3 +8,7 @@ h1 {
     font-family: 'Monomania';
     text-align: center;
 }
+
+.fotter {
+    box-shadow: 12px 12px 12px 12px rgba(0,0,0,.09), 4px 4px 4px rgba(0,0,0,.09);
+}

@@ -32,7 +32,7 @@ export async function SelectionSort(arrayRef, compare, swap) {
     for (let i = 0; i < arrayRef.current.length - 1; i++) {
         let minIndex = i;
         for (let j = i + 1; j < arrayRef.current.length; j++) {
-            await compare(i, j);
+            await compare(minIndex, j);
             if (arrayRef.current[j] < arrayRef.current[minIndex]) {
                 minIndex = j;
             }

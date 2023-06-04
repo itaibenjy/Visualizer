@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { MDBContainer, MDBInput } from 'mdb-react-ui-kit';
 
-const SudokuCell = ({ board, row, col, onValueChange }) => {
+const SudokuCell = ({ board, row, col, onValueChange, style}) => {
 
   const handleChange = (event) => {
     // check if the value is a number between 1 and 9 or empty
@@ -11,13 +11,13 @@ const SudokuCell = ({ board, row, col, onValueChange }) => {
   };
 
   return (
-    <td className='sudoku'>
+    <td className='sudoku' style={style}>
       <input 
         type="text" 
         maxLength="1" 
         value={board[row][col]} 
         onChange={handleChange} 
-        style={{ width: '100%', height: '100%', textAlign: 'center', border: 'none' }} 
+        style={style}
       />
     </td>
   );

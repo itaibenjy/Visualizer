@@ -16,6 +16,7 @@ import {
   MDBCollapse,
   MDBSwitch
 } from 'mdb-react-ui-kit';
+import logo from '../assets/images/logo.png';
 
 import { Link } from 'react-router-dom';
 
@@ -39,9 +40,19 @@ export default function App() {
   }
 
   return (
-    <MDBNavbar expand='sm' >
+    <MDBNavbar expand='sm' sticky>
       <MDBContainer fluid>
-        <MDBNavbarBrand href='#'>Brand</MDBNavbarBrand>
+
+        <Link to="/Visualiser" >
+        <MDBNavbarBrand href='#'>
+            <img
+              src={logo}
+              height='30'
+              alt=''
+              loading='lazy'
+            />
+        </MDBNavbarBrand>
+        </Link>
 
         <MDBNavbarToggler
           aria-controls='navbarSupportedContent'
@@ -55,42 +66,30 @@ export default function App() {
         <MDBCollapse navbar show={showBasic}>
           <MDBNavbarNav className='mr-auto mb-2 mb-sm-0'>
 
-            {/* Home */}
+            {/* Sudoku */}
             <MDBNavbarItem>
-              <Link to="/Visualiser" >
-              <MDBNavbarLink active aria-current='page' href='#'>
-                Home
-              </MDBNavbarLink>
+              <Link to="/Visualiser/sudoku" >
+                <MDBNavbarLink href='#' style={{color:"var(--mdb-secondary"}}>
+                  Sudoku
+                </MDBNavbarLink>
               </Link>
             </MDBNavbarItem>
 
-            {/* CSP */}
-            <MDBNavbarItem>
-              <MDBDropdown>
-                <MDBDropdownToggle className='nav-link' tag='a' role='button'>
-                  CSP
-                </MDBDropdownToggle>
-                <MDBDropdownMenu>
-                  <Link to="/Visualiser/sudoku" ><MDBDropdownItem link >Sudoku</MDBDropdownItem></Link>
-                  <MDBDropdownItem link>Queens Puzzle</MDBDropdownItem>
-                  <MDBDropdownItem link>Map Coloring</MDBDropdownItem>
-                </MDBDropdownMenu>
-              </MDBDropdown>
-            </MDBNavbarItem>
 
             {/* Sorting */}
-
             <MDBNavbarItem>
               <Link to="/Visualiser/sorting" >
-                <MDBNavbarLink href='#'>
+                <MDBNavbarLink href='#' style={{color:"var(--mdb-secondary"}}>
                   Sorting
                 </MDBNavbarLink>
               </Link>
             </MDBNavbarItem>
 
-            <MDBNavbarItem >
-              <MDBContainer className='d-flex align-items-center justify-content-start m-0 mt-2 p-0'>
-                <MDBIcon fas icon="sun" className="mx-2" /><MDBSwitch checked={switchValue} onChange={handleSwitch} /><MDBIcon fas icon="moon" />
+            <MDBNavbarItem className='ms-auto'>
+              <MDBContainer className='d-flex align-items-center justify-content-start ms-auto mt-2 p-0'>
+                <MDBIcon fas icon="sun" className="mx-2" />
+                <MDBSwitch checked={switchValue} onChange={handleSwitch} />
+                <MDBIcon fas icon="moon" />
               </MDBContainer>
             </MDBNavbarItem>
 

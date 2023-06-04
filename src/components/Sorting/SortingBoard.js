@@ -5,7 +5,7 @@ import "./Sorting.css"
 export default function SortingBoard({array, colors}) {
 
     return (
-        <MDBContainer fluid>
+        <MDBContainer fluid style={{height: "100%"}}>
             <table className="sorting">
             <tbody>
                 <tr>

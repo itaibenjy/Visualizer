@@ -31,9 +31,10 @@ export async function sudokuSolver(board, animateSetBoard , isSolvingRef){
             for (let col = 0; col < 9; col ++) {
                 if (board[row][col] === "") {
                     for (let num = 1; num < 10; num++) {
+                        let isValid = !rows[row].has(num) && !cols[col].has(num) && !boxes[Math.floor(row / 3) * 3 + Math.floor(col / 3)].has(num)
                         // this is only fo animation purposes usually it would be in the if statement
-                        await animateSetBoard(row, col, num.toString());
-                        if (!rows[row].has(num) && !cols[col].has(num) && !boxes[Math.floor(row / 3) * 3 + Math.floor(col / 3)].has(num)) {
+                        await animateSetBoard(row, col, num.toString(), isValid);
+                        if (isValid) {
                             rows[row].add(num);
                             cols[col].add(num);
                             boxes[Math.floor(row / 3) * 3 + Math.floor(col / 3)].add(num);
@@ -41,7 +42,7 @@ export async function sudokuSolver(board, animateSetBoard , isSolvingRef){
                                 return true;
                             } else {
                                 if (isSolvingRef.current === false) return false;
-                                await animateSetBoard(row, col, "");
+                                await animateSetBoard(row, col, "", false);
                                 rows[row].delete(num);
                                 cols[col].delete(num);
                                 boxes[Math.floor(row / 3) * 3 + Math.floor(col / 3)].delete(num);
@@ -84,7 +85,6 @@ export function generateSudokuBoard() {
             var num = rand().toString();
         } while (rows[row].has(num) || cols[col].has(num) || boxes[Math.floor(row / 3) * 3 + Math.floor(col / 3)].has(num));
 
-        console.log(num, typeof(num))
         board[row][col] = num;
         rows[row].add(num);
         cols[col].add(num);
