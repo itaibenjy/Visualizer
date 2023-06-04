@@ -8,20 +8,20 @@ table.sudoku {
   border: 3px solid black;
   border-collapse: collapse;
   margin: 20px auto;
+  width: min(50vw, 50vh);
+  height: min(50vw, 50vh);
 }
 
 td.sudoku {
-  width: min(7vw, 7vh);
-  height: min(7vw, 7vh);
   border: 1px solid #CCC;
   text-align: center;
   outline: none;
 }
 
 td input {
-  font-size: min(5vw, 5vh);
-  width: 100%;
-  height: 100%;
+  font-size: min(4vw, 4vh);
+  width: min(6vw, 6vh);
+  height: min(6vw, 6vh);
   border: none;
   text-align: center;
   outline: none;
@@ -33,6 +33,9 @@ td.sudoku:nth-child(3n) {
 
 tr.sudoku:nth-child(3n) {
   border-bottom: 3px solid black;
+}
+
+table.sudoku tr {
 }
 
 .buttons {

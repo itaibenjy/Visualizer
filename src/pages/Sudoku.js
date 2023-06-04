@@ -12,7 +12,7 @@ export default function Sudoku() {
   const {board, setBoard, isSolving, solveSudoku, fastSolveSudoku, speed, changeSpeed , generateNewSudokuBoard,  clearBoard, success, unsolve, boardStyle} = useSudoku(initialBoard);
   const props = {board, setBoard, isSolving};
 
-    return (<MDBContainer className="p-4">
+    return (<MDBContainer className="p-1 mb-5">
     <MDBTypography tag='h1' style={{fontFamily: 'Monomania'}} className='display-1'>Sudoku</MDBTypography>
         <MDBContainer  className="d-flex justify-content-center my-3">
             <MDBBtn size="sm" color="secondary" className="mx-2"></MDBBtn> <MDBTypography className="my-1" tag='h6'>User Input</MDBTypography>

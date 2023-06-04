@@ -16,7 +16,7 @@ export default function Sorting() {
     const [selected, setSelected] = useState("Bubble Sort");
 
     return (
-        <MDBContainer>
+        <MDBContainer className="mb-5">
             <MDBTypography className="display-1" tag='h1'>Sorting</MDBTypography>
             <MDBContainer  className="d-flex justify-content-center my-3">
                 <Select disabled={isVisualizing} children={Object.keys(Algorithms).flat()} selected={selected} setSelected={setSelected}/>
@@ -36,7 +36,7 @@ export default function Sorting() {
                 <MDBTypography variant='h6' className="mx-2">Sorting Speed</MDBTypography>
                 <MDBRange min='0' max='500' value={speed} onChange={changeSpeed} id='customRange' label=''/>
             </MDBContainer>
-            <MDBContainer  className="d-flex justify-content-center my-2">
+            <MDBContainer  className="d-flex justify-content-center mt-2 mb-4 pb-2">
                 <MDBTooltip title='Generate New Board' tag='span' placement="bottom">
                     <MDBBtn floating color="danger" className="mx-1" disabled={isVisualizing} onClick={randomizeArray}><MDBIcon fas size="lg" icon="random" /></MDBBtn>
                 </MDBTooltip>
