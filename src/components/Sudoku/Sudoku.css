@@ -11,8 +11,8 @@ table.sudoku {
 }
 
 td.sudoku {
-  height: 2em;
-  width: 2em;
+  width: 1.9em;
+  height: 1.9em;
   border: 1px solid #CCC;
   text-align: center;
   outline: none;
@@ -20,7 +20,7 @@ td.sudoku {
 
 td input {
   font-size: 1em;
-  width: 1em;
+  width: 0.5em;
   border: none;
   text-align: center;
   outline: none;

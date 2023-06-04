@@ -16,27 +16,27 @@ export default function Sorting() {
     const [selected, setSelected] = useState("Bubble Sort");
 
     return (
-        <div>
+        <MDBContainer>
             <MDBTypography className="display-1" tag='h1'>Sorting</MDBTypography>
             <MDBContainer  className="d-flex justify-content-center my-3">
                 <Select disabled={isVisualizing} children={Object.keys(Algorithms).flat()} selected={selected} setSelected={setSelected}/>
             </MDBContainer>
             <MDBContainer  className="d-flex justify-content-center my-3">
-                <MDBBtn size="sm" color="danger" className="mx-2"></MDBBtn> <MDBTypography className="my-1" variant='h6'>Swaping</MDBTypography>
-                <MDBBtn size="sm" color="warning" className="mx-2"></MDBBtn> <MDBTypography className="my-1" variant="h6">Compering</MDBTypography>
-                <MDBBtn size="sm" color="info" className="mx-2"></MDBBtn> <MDBTypography className="my-1" variant="h6">Unsorted</MDBTypography>
-                <MDBBtn size="sm" color="success" className="mx-2"></MDBBtn> <MDBTypography className="my-1" variant="h6">Sorted</MDBTypography>
+                <MDBBtn size="sm" color="danger" className="me-2"></MDBBtn> <MDBTypography className="my-1" tag='h6'>Swaping</MDBTypography>
+                <MDBBtn size="sm" color="warning" className="mx-2"></MDBBtn> <MDBTypography className="my-1" tag='h6'>Compering</MDBTypography>
+                <MDBBtn size="sm" color="info" className="mx-2"></MDBBtn> <MDBTypography className="my-1" tag='h6'>Unsorted</MDBTypography>
+                <MDBBtn size="sm" color="success" className="mx-2"></MDBBtn> <MDBTypography className="my-1" tag='h6'>Sorted</MDBTypography>
             </MDBContainer>
             <MDBContainer  className="d-flex justify-content-center my-3">
                 <MDBTypography variant='h6' className="mx-2">Array Size</MDBTypography>
                 <MDBRange  min='5' max='100' value={size} disabled={isVisualizing} onChange={changeSize} id='customRange'/>
             </MDBContainer>
-            <SortingBoard array={array} colors={colors}/>
+            <SortingBoard array={array} colors={colors} className="mx-1" />
             <MDBContainer  className="d-flex justify-content-center">
                 <MDBTypography variant='h6' className="mx-2">Sorting Speed</MDBTypography>
                 <MDBRange min='0' max='500' value={speed} onChange={changeSpeed} id='customRange' label=''/>
             </MDBContainer>
-            <MDBContainer  className="d-flex justify-content-center">
+            <MDBContainer  className="d-flex justify-content-center my-2">
                 <MDBTooltip title='Generate New Board' tag='span' placement="bottom">
                     <MDBBtn floating color="danger" className="mx-1" disabled={isVisualizing} onClick={randomizeArray}><MDBIcon fas size="lg" icon="random" /></MDBBtn>
                 </MDBTooltip>
@@ -44,7 +44,7 @@ export default function Sorting() {
                     <MDBBtn floating color="success" className="mx-1"  disabled={isVisualizing} onClick={Algorithms[selected]}><MDBIcon fas size="lg" icon="play" /></MDBBtn>
                 </MDBTooltip>
             </MDBContainer>
-        </div>
+        </MDBContainer>
     )
 
 }

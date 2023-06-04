@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MDBInput } from 'mdb-react-ui-kit';
+import { MDBContainer, MDBInput } from 'mdb-react-ui-kit';
 
 const SudokuCell = ({ board, row, col, onValueChange }) => {
 
@@ -17,7 +17,7 @@ const SudokuCell = ({ board, row, col, onValueChange }) => {
         maxLength="1" 
         value={board[row][col]} 
         onChange={handleChange} 
-        style={{ width: '40px', height: '40px', textAlign: 'center', border: 'none' }} 
+        style={{ width: '100%', height: '100%', textAlign: 'center', border: 'none' }} 
       />
     </td>
   );

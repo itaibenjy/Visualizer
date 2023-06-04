@@ -12,7 +12,7 @@ export default function Sudoku() {
   const {board, setBoard, isSolving, solveSudoku, fastSolveSudoku, speed, changeSpeed , generateNewSudokuBoard,  clearBoard, success, unsolve} = useSudoku(initialBoard);
   const props = {board, setBoard, isSolving};
 
-    return (<>
+    return (<MDBContainer className="p-4">
     <MDBTypography tag='h1' style={{fontFamily: 'Monomania'}} className='display-1'>Sudoku</MDBTypography>
         <SudokuBoard {...props} />
         <MDBContainer  className="d-flex justify-content-center">
@@ -43,6 +43,6 @@ export default function Sudoku() {
                 <MDBBtn floating color="danger" disabled={isSolving} onClick={clearBoard}><MDBIcon fas size="lg" icon="trash-alt" /></MDBBtn>
             </MDBTooltip>
         </MDBContainer>
-        </>
+        </MDBContainer>
     );
 }
