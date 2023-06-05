@@ -6,20 +6,14 @@ import Select from "../components/Select";
 
 export default function Sorting() {
 
-    const {array, changeSize, size, colors, bubbleSort, mergeSort, insertionSort, selectionSort, speed, changeSpeed, isVisualizing, randomizeArray} = useSort();
-    const Algorithms = {
-        "Bubble Sort": bubbleSort,
-        "Merge Sort": mergeSort,
-        "Insertion Sort": insertionSort,
-        "Selection Sort": selectionSort
-    }
-    const [selected, setSelected] = useState("Bubble Sort");
+    const {array, changeSize, size, colors, Algorithms, excecuteAlgorithm, speed, changeSpeed, isVisualizing, randomizeArray} = useSort();
+    const [selected, setSelected] = useState(0);
 
     return (
         <MDBContainer className="mb-5">
             <MDBTypography className="display-1" tag='h1'>Sorting</MDBTypography>
             <MDBContainer  className="d-flex justify-content-center my-3">
-                <Select disabled={isVisualizing} children={Object.keys(Algorithms).flat()} selected={selected} setSelected={setSelected}/>
+                <Select disabled={isVisualizing} children={Algorithms.map((value) => value.name)} selected={Algorithms[selected].name} setSelected={setSelected}/>
             </MDBContainer>
             <MDBContainer  className="d-flex justify-content-center my-3">
                 <MDBBtn size="sm" color="danger" className="me-2"></MDBBtn> <MDBTypography className="my-1" tag='h6'>Swaping</MDBTypography>
@@ -41,7 +35,7 @@ export default function Sorting() {
                     <MDBBtn floating color="danger" className="mx-1" disabled={isVisualizing} onClick={randomizeArray}><MDBIcon fas size="lg" icon="random" /></MDBBtn>
                 </MDBTooltip>
                 <MDBTooltip title='Start Visualizing' tag='span' placement="bottom">
-                    <MDBBtn floating color="success" className="mx-1"  disabled={isVisualizing} onClick={Algorithms[selected]}><MDBIcon fas size="lg" icon="play" /></MDBBtn>
+                    <MDBBtn floating color="success" className="mx-1"  disabled={isVisualizing} onClick={() => excecuteAlgorithm(Algorithms[selected])}><MDBIcon fas size="lg" icon="play" /></MDBBtn>
                 </MDBTooltip>
             </MDBContainer>
         </MDBContainer>

@@ -7,7 +7,7 @@ export default function Select({disabled, children, selected, setSelected}) {
       <MDBDropdownToggle disabled={disabled}>{selected}</MDBDropdownToggle>
       <MDBDropdownMenu>
         {children.map((child, index) => {
-            return <MDBDropdownItem key={index} onClick={() => setSelected(child)} link>{child}</MDBDropdownItem>
+            return <MDBDropdownItem key={index} onClick={() => setSelected(index)} link>{child}</MDBDropdownItem>
             })
         }
       </MDBDropdownMenu>

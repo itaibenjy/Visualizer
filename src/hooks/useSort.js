@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { BubbleSort, MergeSort, InsertionSort, SelectionSort } from '../controllers/sortController';
+import { BubbleSort, MergeSort, InsertionSort, SelectionSort, QuickSort, HeapSort } from '../controllers/sortController';
 
 export function useSort() {
 
@@ -73,30 +73,9 @@ export function useSort() {
         setSpeed(event.target.value);
     }
 
-    async function bubbleSort() {
+    async function excecuteAlgorithm(algorithm) {
         setIsVisualizing(true);
-        await BubbleSort(arrayRef, compare, swap)
-        await resetColors();
-        setIsVisualizing(false);
-    }
-
-    async function mergeSort() {
-        setIsVisualizing(true);
-        await MergeSort(arrayRef, compare, mergeSwap);
-        await resetColors();
-        setIsVisualizing(false);
-    }
-
-    async function insertionSort() {
-        setIsVisualizing(true);
-        await InsertionSort(arrayRef, compare, swap)
-        await resetColors();
-        setIsVisualizing(false);
-    }
-
-    async function selectionSort() {
-        setIsVisualizing(true);
-        await SelectionSort(arrayRef, compare, swap)
+        await algorithm.function(arrayRef, compare, algorithm.name == "Merge Sort" ? mergeSwap : swap);
         await resetColors();
         setIsVisualizing(false);
     }
@@ -129,6 +108,7 @@ export function useSort() {
     }
 
     async function swap(i, j) {
+        if (i === j) return;
         setColors(colorsRef.current.map((value, index) => {
             if (index === i || index === j) {
                 return "danger";
@@ -169,9 +149,35 @@ export function useSort() {
         await halfWait();
     }
 
+    const Algorithms = [
+        {
+            name: "Bubble Sort",
+            function: BubbleSort
+        },
+        {
+            name: "Merge Sort",
+            function: MergeSort
+        },
+        {
+            name: "Insertion Sort",
+            function: InsertionSort
+        },
+        {
+            name: "Selection Sort",
+            function: SelectionSort
+        },
+        {
+            name: "Quick Sort",
+            function: QuickSort
+        },
+        {
+            name: "Heap Sort",
+            function: HeapSort
+        }
+
+    ];
 
 
 
-
-    return {array, changeSize, size, colors, bubbleSort, mergeSort, insertionSort, selectionSort, speed, changeSpeed, isVisualizing, randomizeArray}
+    return {array, changeSize, size, colors, Algorithms, excecuteAlgorithm, speed, changeSpeed, isVisualizing, randomizeArray}
 }
