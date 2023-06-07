@@ -40,8 +40,9 @@ export default function Pathfinding() {
             <MDBContainer  className="d-flex justify-content-center my-3" id="info">
                 <MDBBtn size="sm" color="secondary" className="me-2"></MDBBtn> <MDBTypography className="my-1" tag='h6'>Unvisited</MDBTypography>
                 <MDBBtn size="sm" color="info" className="mx-2"></MDBBtn> <MDBTypography className="my-1" tag='h6'>Visited</MDBTypography>
-                <MDBBtn size="sm" color="warning" className="mx-2"></MDBBtn> <MDBTypography className="my-1" tag='h6'>Current Nodes</MDBTypography>
-                <MDBBtn size="sm" color="success" className="mx-2"></MDBBtn> <MDBTypography className="my-1" tag='h6'>Path Selected</MDBTypography>
+                <MDBBtn size="sm" style={{ backgroundColor: '#6f42c1' }} className="mx-2"></MDBBtn> <MDBTypography className="my-1" tag='h6'>Current Nodes</MDBTypography>
+                <MDBBtn size="sm" style={{ backgroundColor: '#20c997' }} className="mx-2"></MDBBtn> <MDBTypography className="my-1" tag='h6'>Path Selected</MDBTypography>
+                        
             </MDBContainer>
             }
             <MDBContainer  className="d-flex justify-content-center">
