@@ -9,6 +9,7 @@
 .cell {
     border: 1px solid #ddd;
     position: relative;
+    text-align: center;
 }
 
 /*
@@ -23,16 +24,16 @@ in mdb css
 }
 
 .cell.current {
-    background-color: var(--mdb-warning);
+    background-color: var(--mdb-purple);
 }
 
 .cell.path {
-    background-color: var(--mdb-success);  
+    background-color: var(--mdb-teal);  
 }
 
 
 h1, h6, p {
-    z-index: 1;
+    z-index: 2;
     position: relative; /* z-index only works on positioned elements*/
     pointer-events: none;
 

@@ -10,7 +10,7 @@ export default function Sorting() {
     const [selected, setSelected] = useState(0);
 
     return (
-        <MDBContainer className="mb-5">
+        <MDBContainer className="mb-5 pageContainer">
             <MDBTypography className="display-1" tag='h1'>Sorting</MDBTypography>
             <MDBContainer  className="d-flex justify-content-center my-3">
                 <Select disabled={isVisualizing} children={Algorithms.map((value) => value.name)} selected={Algorithms[selected].name} setSelected={setSelected}/>

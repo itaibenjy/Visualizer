@@ -66,15 +66,15 @@ export default function App() {
         <MDBCollapse navbar show={showBasic}>
           <MDBNavbarNav className='mr-auto mb-2 mb-sm-0'>
 
-            {/* Sudoku */}
+
+            {/* Path finding */}
             <MDBNavbarItem>
-              <Link to="/Visualizer/sudoku" >
+              <Link to="/Visualizer/pathfinding" >
                 <MDBNavbarLink tag="div" style={{color:"var(--mdb-secondary"}}>
-                  Sudoku
+                  Path Finding
                 </MDBNavbarLink>
               </Link>
             </MDBNavbarItem>
-
 
             {/* Sorting */}
             <MDBNavbarItem>
@@ -85,11 +85,11 @@ export default function App() {
               </Link>
             </MDBNavbarItem>
 
-            {/* Path finding */}
+            {/* Sudoku */}
             <MDBNavbarItem>
-              <Link to="/Visualizer/pathfinding" >
+              <Link to="/Visualizer/sudoku" >
                 <MDBNavbarLink tag="div" style={{color:"var(--mdb-secondary"}}>
-                  Path Finding
+                  Sudoku
                 </MDBNavbarLink>
               </Link>
             </MDBNavbarItem>

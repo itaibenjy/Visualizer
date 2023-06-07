@@ -1,13 +1,13 @@
 import { MDBContainer } from "mdb-react-ui-kit";
 import ScreenshotSorting from "../assets/images/Screenshot-Sorting.png"
-import ScreenshotSudoku from "../assets/images/Screenshot-Sudoku.png"
+import ScreenshotPathfinding from "../assets/images/Screenshot-Pathfinding.png"
 import CV from "../assets/CV.pdf"
 
 
 
 export default function Home() {
 
-    return (<>
+    return (<div className="pageContainer">
         <MDBContainer>
             <div class="row flex-lg-row align-items-center justify-content-center g-5 py-5">
                 <div class="col-lg-6">
@@ -27,26 +27,26 @@ export default function Home() {
                 </MDBContainer>
             </div>
         </MDBContainer>
-
         <MDBContainer>
             <div class="row flex-lg-row-reverse align-items-center justify-content-center g-5 py-5">
                 <div class="col-lg-6">
-                    <h3 class="fw-bold lh-1 my-3" style={{fontFamily: "Monomania"}}> My Progress So Far</h3>
+                    <h3 class="fw-bold lh-1 my-3" style={{fontFamily: "Monomania"}}> My Journey in Algorithms</h3>
                     <p class="lead my-2">
-                        I've spent countless hours diving into the world of Sudoku and Sorting algorithms, turning them into interactive visualizations. Using React, I've not only been able to better understand these algorithms but also to improve my coding skills. This is an ongoing journey, and every step brings a new lesson.
+                        My journey into the world of algorithms has been a thrilling one, starting from Sudoku and Sorting algorithms and transforming them into interactive visualizations. Using React, I've been able to demystify these complex algorithms, significantly improving my coding skills in the process. This ongoing expedition continues to reveal new lessons and insights.
                     </p>
-                    <h3 class="fw-bold lh-1 mb-3 mt-5" style={{fontFamily: "Monomania"}}>What's on the Horizon?</h3>
+                    <h3 class="fw-bold lh-1 mb-3 mt-5" style={{fontFamily: "Monomania"}}>Current Adventures</h3>
                     <p class="lead my-2">
-                       Next on my journey, I'm steering towards the labyrinth of Pathfinding Algorithms. From Dijkstra's Algorithm to A* Search, I'm excited to dig deeper and share my learning progress with you. Keep an eye out for my upcoming explorations!
+                    I have now embarked on the intriguing path of Pathfinding Algorithms, commencing with the A* Search and Breadth-First Search (BFS). As I dive deeper into this fascinating realm, I am eagerly sharing my progress and discoveries. Stay tuned for a detailed exploration of these techniques and more exciting revelations to come!
                     </p>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                     </div>
                 </div>
                 <MDBContainer fluid class="col-10 col-sm-8 col-lg-6">
-                    <img src={ScreenshotSudoku} class="d-block mx-auto img-fluid" alt="Bootstrap Themes" style={{maxHeight:"550px", borderRadius:"10px"}} loading="lazy" />
+                    <img src={ScreenshotPathfinding} class="d-block mx-auto img-fluid" alt="Bootstrap Themes" style={{maxHeight:"550px", borderRadius:"10px"}} loading="lazy" />
                 </MDBContainer>
             </div>
         </MDBContainer>
+
         <MDBContainer className="my-4">
             <div class="row flex-lg-row-reverse align-items-center justify-content-center g-5 py-5">
                     <h3 class="fw-bold lh-1 my-3 mx-10 text-center" style={{fontFamily: "Monomania"}}> Hi there, I'm Itai Benjamin, a budding programmer on a mission to enhance my understanding of algorithms and React.</h3>
@@ -64,5 +64,5 @@ export default function Home() {
                     </p>
             </div>
         </MDBContainer>
-        </>)
+        </div>)
 }

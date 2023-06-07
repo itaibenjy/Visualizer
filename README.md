@@ -16,10 +16,11 @@ I've spent countless hours diving into the world of Sudoku and Sorting algorithm
 
 ![Bootstrap Themes](/src/assets/images/Screenshot-Sudoku.png)
 
-## What's on the Horizon?
+## Current Adventures
 
-Next on my journey, I'm steering towards the labyrinth of Pathfinding Algorithms. From Dijkstra's Algorithm to A\* Search, I'm excited to dig deeper and share my learning progress with you. Keep an eye out for my upcoming explorations!
+I have now embarked on the intriguing path of Pathfinding Algorithms, commencing with the A* Search and Breadth-First Search (BFS). As I dive deeper into this fascinating realm, I am eagerly sharing my progress and discoveries. Stay tuned for a detailed exploration of these techniques and more exciting revelations to come!
 
+![Bootstrap Themes](/src/assets/images/Screenshot-Pathfinding.png)
 
 ## Hi there, I'm Itai Benjamin, a budding programmer on a mission to enhance my understanding of algorithms and React.
 

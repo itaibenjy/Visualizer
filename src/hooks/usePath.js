@@ -27,6 +27,9 @@ export function usePath() {
     const [isVisualizing, setIsVisualizing] = useState(false); 
     const [isMouseDown, setIsMouseDown] = useState(false);
     const [forceUpdate, setForceUpdate] = useState(0);
+    const [setType, setSetType] = useState("wall"); // wall, start, end
+    const [afterVisualize, setAfterVisualize] = useState(false);
+    const [selected, setSelected] = useState(0);
 
 
     const [grid, setGrid] = useState([]);
@@ -38,6 +41,7 @@ export function usePath() {
     const speedRef = useRef(speed);
     const isVisualizingRef = useRef(isVisualizing);
     const gridRef = useRef(grid);
+    const afterVisualizeRef = useRef(afterVisualize);
 
     const cellSize = 30; // The size of each cell in pixels
     const cols = Math.floor(windowSize.width / cellSize)+1;
@@ -82,10 +86,30 @@ export function usePath() {
         setStartNode(newGrid[Math.floor(rows/2)][Math.floor(cols/4)]);
         setEndNode(newGrid[Math.floor(rows/2)][Math.floor(cols/4)*3]);
         setGrid(newGrid);
+        setAfterVisualize(false);
+        setIsVisualizing(false);
     }, [rows, cols, windowSize]);
 
+    async function realTimeUpdate(start = startNode, end = endNode) {
+        if (afterVisualizeRef.current) {
+            for (let i = 0; i < grid.length; i++) {
+                for (let j = 0; j < grid[i].length; j++) {
+                    grid[i][j].isVisited = false;
+                    grid[i][j].isCurrent = false;
+                    grid[i][j].isPath = false;
+                    grid[i][j].previousNode = null;
+                    grid[i][j].distance = Infinity;
+                }
+            }
+            const path = await Algorithms[selected].function(gridRef, start, end, wait);
+            if (path.found){
+                await pathFind(path.path);
+            }
+        }
+    }
 
     async function wait() {
+        if (afterVisualizeRef.current) { return; }
         forceRender();
         return await new Promise(resolve => {
             setTimeout(resolve, maxSpeed - speedRef.current);
@@ -93,33 +117,62 @@ export function usePath() {
     }
 
 
-    async function updateColor(row, col, kind){
-        if (!isMouseDown) return;
-        const newGrid = [...grid];
+    async function updateColor(row, col, isMove = false) {
 
-        switch (kind) {
+        switch (setType) {
             case "wall":
-                newGrid[row][col].isWall = !newGrid[row][col].isWall;
+                if(grid[row][col].isStart || grid[row][col].isEnd) break;
+                grid[row][col].isWall = true;
+                if (grid[row][col].isVisited) realTimeUpdate(startNode, endNode);
+                break;
+            case "unwall":
+                if(grid[row][col].isStart || grid[row][col].isEnd) break;
+                grid[row][col].isWall = false;
+                realTimeUpdate(startNode, endNode);
                 break;
             case "start":
-                newGrid[row][col].isStart = true;
+                if(grid[row][col].isEnd || grid[row][col].isWall) break;
+                if(startNode.row === row && startNode.col === col && !isMove) break;
+                updateStart(row, col, isMove);
                 break;
             case "end":
-                newGrid[row][col].isEnd = true;
-                break;
-            case "visited":
-                newGrid[row][col].isVisited = true;
-                break;
-            case "current":
-                newGrid[row][col].isCurrent = true;
+                if(grid[row][col].isStart || grid[row][col].isWall) break;
+                if(endNode.row === row && endNode.col === col && !isMove) break; 
+                updateEnd(row, col);
                 break;
             default:
                 break;
         }
 
-        setGrid(newGrid);
+        forceRender();
 
     };
+
+    function updateStart(row, col, isMove){
+        for (let i = 0; i < grid.length; i++) {
+            for (let j = 0; j < grid[i].length; j++) {
+                grid[i][j].isStart = false;
+            }
+        }
+        grid[row][col].isStart = true;
+        setStartNode(grid[row][col]);
+        if (afterVisualize) {
+            realTimeUpdate(grid[row][col], endNode);
+        }
+    }
+
+    function updateEnd(row, col){
+        for (let i = 0; i < grid.length; i++) {
+            for (let j = 0; j < grid[i].length; j++) {
+                grid[i][j].isEnd = false;
+            }
+        }
+        grid[row][col].isEnd = true;
+        setEndNode(grid[row][col]);
+        if (afterVisualize) {
+            realTimeUpdate(startNode, grid[row][col]);
+        }
+    }
     
 
     useEffect(() => {
@@ -134,6 +187,10 @@ export function usePath() {
         gridRef.current = grid;
     }, [grid]);
 
+    useEffect(() => {
+        afterVisualizeRef.current = afterVisualize;
+    }, [afterVisualize]);
+
 
     const Dijkstra = (array) => {
         console.log("Dijkstra");
@@ -144,14 +201,19 @@ export function usePath() {
     }
 
     async function excecuteAlgorithm(algorithm){
-        if (isVisualizingRef.current) return;
         setIsVisualizing(true);
         clearVisited();
         const path = await algorithm.function(gridRef, startNode, endNode, wait);
         if (path.found){
-            pathFind(path.path);
+            await pathFind(path.path);
         }
+        setAfterVisualize(true);
         setIsVisualizing(false);
+    }
+
+    async function startVisualizing(){
+        setAfterVisualize(false)
+        excecuteAlgorithm(Algorithms[selected]);
     }
 
     async function pathFind(path){
@@ -173,6 +235,7 @@ export function usePath() {
             }
         }
         setGrid(newGrid);
+        setAfterVisualize(false);
     }
 
     function clearAll(){
@@ -188,6 +251,7 @@ export function usePath() {
             }
         }
         setGrid(newGrid);
+        setAfterVisualize(false);
     }
 
     async function mazeGen(){
@@ -199,6 +263,7 @@ export function usePath() {
     }
 
     async function waitGen(){
+        if (afterVisualizeRef.current) { return; }
         forceRender();
         return await new Promise(resolve => {
             setTimeout(resolve, 1);
@@ -207,14 +272,15 @@ export function usePath() {
 
     const Algorithms = [
         {
-            name: "Breadth First Search",
-            function: BFS
-        },
-        {
             name: "A*",
             function: Astar
+        },
+        {
+            name: "Breadth First Search",
+            function: BFS
         }
     ]
 
-    return {speed, changeSpeed, excecuteAlgorithm, isVisualizing, Algorithms,  grid, updateColor, cellSize, cols, rows, setIsMouseDown, clearVisited, clearAll, mazeGen}
+
+    return {speed, changeSpeed, startVisualizing, isVisualizing, Algorithms,  grid, updateColor, cellSize, cols, rows, setIsMouseDown, isMouseDown, clearVisited, clearAll, mazeGen,  setSetType, selected, setSelected, realTimeUpdate}
 }

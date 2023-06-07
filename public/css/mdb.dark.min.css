@@ -29,3 +29,7 @@
 .cell.wall {
     background-color: var(--mdb-light);  
 }
+
+.semi-transparent {
+    background-color: rgba(45, 45, 45, 0.9);
+}
