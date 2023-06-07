@@ -44,7 +44,7 @@ export default function App() {
       <MDBContainer fluid>
 
         <Link to="/Visualizer/" >
-        <MDBNavbarBrand href='#'>
+        <MDBNavbarBrand tag="div">
             <img
               src={logo}
               height='30'
@@ -69,7 +69,7 @@ export default function App() {
             {/* Sudoku */}
             <MDBNavbarItem>
               <Link to="/Visualizer/sudoku" >
-                <MDBNavbarLink href='#' style={{color:"var(--mdb-secondary"}}>
+                <MDBNavbarLink tag="div" style={{color:"var(--mdb-secondary"}}>
                   Sudoku
                 </MDBNavbarLink>
               </Link>
@@ -79,8 +79,17 @@ export default function App() {
             {/* Sorting */}
             <MDBNavbarItem>
               <Link to="/Visualizer/sorting" >
-                <MDBNavbarLink href='#' style={{color:"var(--mdb-secondary"}}>
+                <MDBNavbarLink tag="div" style={{color:"var(--mdb-secondary"}}>
                   Sorting
+                </MDBNavbarLink>
+              </Link>
+            </MDBNavbarItem>
+
+            {/* Path finding */}
+            <MDBNavbarItem>
+              <Link to="/Visualizer/pathfinding" >
+                <MDBNavbarLink tag="div" style={{color:"var(--mdb-secondary"}}>
+                  Path Finding
                 </MDBNavbarLink>
               </Link>
             </MDBNavbarItem>

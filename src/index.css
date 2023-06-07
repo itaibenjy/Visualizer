@@ -12,3 +12,7 @@ h1 {
 .fotter {
     box-shadow: 12px 12px 12px 12px rgba(0,0,0,.09), 4px 4px 4px rgba(0,0,0,.09);
 }
+
+.no-scroll {
+    overflow: hidden;
+}

@@ -1,0 +1,45 @@
+.grid {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    z-index: 0;
+}
+
+.cell {
+    border: 1px solid #ddd;
+    position: relative;
+}
+
+/*
+in mdb css
+.cell.wall {
+    background-color: var(--mdb-body-bg);;  
+}
+*/
+
+.cell.visited {
+    background-color: var(--mdb-info);  
+}
+
+.cell.current {
+    background-color: var(--mdb-warning);
+}
+
+.cell.path {
+    background-color: var(--mdb-success);  
+}
+
+
+h1, h6, p {
+    z-index: 1;
+    position: relative; /* z-index only works on positioned elements*/
+    pointer-events: none;
+
+}
+
+
+div.range {
+    height: 1px;
+}
+

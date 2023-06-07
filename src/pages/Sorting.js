@@ -31,7 +31,7 @@ export default function Sorting() {
                 <MDBRange min='0' max='500' value={speed} onChange={changeSpeed} id='customRange' label=''/>
             </MDBContainer>
             <MDBContainer  className="d-flex justify-content-center mt-2 mb-4 pb-2">
-                <MDBTooltip title='Generate New Board' tag='span' placement="bottom">
+                <MDBTooltip title='Randomize Array' tag='span' placement="bottom">
                     <MDBBtn floating color="danger" className="mx-1" disabled={isVisualizing} onClick={randomizeArray}><MDBIcon fas size="lg" icon="random" /></MDBBtn>
                 </MDBTooltip>
                 <MDBTooltip title='Start Visualizing' tag='span' placement="bottom">

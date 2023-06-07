@@ -19,7 +19,6 @@ export default function App() {
         <MailModal basicModal={basicModal} setBasicModal={setBasicModal} />
         <MDBFooter className='text-center fotter' style={{ position: 'fixed', bottom: 0, width: '100%' }}>
             <MDBContainer className='p-2'>
-                <section className=''>
                     <MDBTooltip title='Email' tag='a' placement='top'>
                     <MDBBtn
                         floating
@@ -31,7 +30,7 @@ export default function App() {
                         <MDBIcon fab icon='google' />
                     </MDBBtn>
                     </MDBTooltip>
-                    <MDBTooltip title='Linkedin' tag='a' placement='top'>
+                    <MDBTooltip title='Linkedin' tag='span' placement='top'>
                     <MDBBtn
                         floating
                         className='mx-2'
@@ -43,7 +42,7 @@ export default function App() {
                     </MDBBtn>
                     </MDBTooltip>
 
-                    <MDBTooltip title='GitHub' tag='a' placement='top'>
+                    <MDBTooltip title='GitHub' tag='span' placement='top'>
                     <MDBBtn
                         floating
                         className='mx-2'
@@ -54,7 +53,6 @@ export default function App() {
                         <MDBIcon fab icon='github' />
                     </MDBBtn>
                     </MDBTooltip>
-                </section>
             </MDBContainer>
 
         </MDBFooter>

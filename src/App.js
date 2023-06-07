@@ -9,6 +9,7 @@ import Fotter from "./components/Fotter"
 import Sudoku from "./pages/Sudoku"
 import Sorting from "./pages/Sorting"
 import Home from "./pages/Home"
+import Pathfinding from "./pages/Pathfinding"
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/Visualizer" element={<Home />} />
             <Route path="/Visualizer/sudoku" element={<Sudoku />} />
             <Route path="/Visualizer/sorting" element={<Sorting />} />
+            <Route path="/Visualizer/pathfinding" element={<Pathfinding />} />
           </Routes>
           <Fotter />
         </div>
