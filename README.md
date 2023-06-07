@@ -1,7 +1,7 @@
 Welcome to Visualizer
 =====================
 
-Try It Fro Yourself: [Visualizer](https://itaibenjy.github.io/Visualizer/)
+Try It For Yourself: [Visualizer](https://itaibenjy.github.io/Visualizer/)
 ## My Personal Exploration into Algorithms and Programming
 
 Programming, at its core, is about learning, problem-solving, and continuous growth. As a Software Engineering student, I started Visualizer as a personal project to help me better understand and appreciate the intricacies of algorithms.
