@@ -32,7 +32,7 @@ in mdb css
 }
 
 
-h1, h6, p {
+h1, h6, p.myText {
     z-index: 2;
     position: relative; /* z-index only works on positioned elements*/
     pointer-events: none;
