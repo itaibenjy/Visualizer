@@ -60,7 +60,7 @@ export default function Home() {
                         Feel free to share your thoughts, suggestions, and questions. Together, we can make algorithm learning a more engaging and collaborative adventure!Please feel free to reach out to me at itaibenjy@gmail.com. You can also find more about my professional background on my <a href="https://www.linkedin.com/in/itai-benjamin-66696b250"> LinkedIn Profile </a>.
                     </p>
                     <p class="lead my-2 mx-5 text-center">
-                        For your convenience, you can also <a href={CV} download> Download My Resume.</a>
+                        For your convenience, you can also <a href={CV} download="Itai Benjamin Resume"> Download My Resume.</a>
                     </p>
             </div>
         </MDBContainer>
