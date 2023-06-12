@@ -1,26 +1,28 @@
 {
   "files": {
-    "main.css": "/Visualizer/static/css/main.c5e47027.css",
-    "main.js": "/Visualizer/static/js/main.2c022c23.js",
+    "main.css": "/Visualizer/static/css/main.2a853a8e.css",
+    "main.js": "/Visualizer/static/js/main.bf9a947f.js",
     "static/media/fa-solid-900.ttf": "/Visualizer/static/media/fa-solid-900.4a2cd718d7031b732e76.ttf",
     "static/media/fa-brands-400.ttf": "/Visualizer/static/media/fa-brands-400.150de8eaa454d669c405.ttf",
     "static/media/fa-solid-900.woff2": "/Visualizer/static/media/fa-solid-900.bb975c966c37455a1bc3.woff2",
     "static/media/MonomaniacOne-Regular.ttf": "/Visualizer/static/media/MonomaniacOne-Regular.186e6708e6bbce33aa56.ttf",
     "static/media/fa-brands-400.woff2": "/Visualizer/static/media/fa-brands-400.e033a13ee751afc1860c.woff2",
-    "static/media/CV.pdf": "/Visualizer/static/media/CV.5d7667233a704da2d60f.pdf",
+    "static/media/CV.pdf": "/Visualizer/static/media/CV.3c9fe2850c5f28c30f00.pdf",
     "static/media/fa-regular-400.ttf": "/Visualizer/static/media/fa-regular-400.d87474231f4192884802.ttf",
     "static/media/Screenshot-Pathfinding.png": "/Visualizer/static/media/Screenshot-Pathfinding.7484018dad22a9d92255.png",
     "static/media/Screenshot-Sorting.png": "/Visualizer/static/media/Screenshot-Sorting.23502c3c5fc501e43674.png",
     "static/media/fa-regular-400.woff2": "/Visualizer/static/media/fa-regular-400.3223dc79c1adee56370b.woff2",
+    "static/media/O.png": "/Visualizer/static/media/O.29e762e0fdaa01be6ad3.png",
     "static/media/logo.png": "/Visualizer/static/media/logo.606c095f12603ace5f10.png",
+    "static/media/X.png": "/Visualizer/static/media/X.be846d746a4470db1128.png",
     "static/media/fa-v4compatibility.ttf": "/Visualizer/static/media/fa-v4compatibility.0e3a648be390bd8cb094.ttf",
     "static/media/fa-v4compatibility.woff2": "/Visualizer/static/media/fa-v4compatibility.68577e40f3e70067b5da.woff2",
     "index.html": "/Visualizer/index.html",
-    "main.c5e47027.css.map": "/Visualizer/static/css/main.c5e47027.css.map",
-    "main.2c022c23.js.map": "/Visualizer/static/js/main.2c022c23.js.map"
+    "main.2a853a8e.css.map": "/Visualizer/static/css/main.2a853a8e.css.map",
+    "main.bf9a947f.js.map": "/Visualizer/static/js/main.bf9a947f.js.map"
   },
   "entrypoints": [
-    "static/css/main.c5e47027.css",
-    "static/js/main.2c022c23.js"
+    "static/css/main.2a853a8e.css",
+    "static/js/main.bf9a947f.js"
   ]
 }
