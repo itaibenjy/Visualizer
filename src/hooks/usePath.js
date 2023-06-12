@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from 'react';
 import BFS from '../controllers/BFS';
 import Astar from '../controllers/Astar';
+import DFS from '../controllers/DFS';
 import MazeGen from '../controllers/MazeGen';
 
 export function usePath() {
@@ -274,6 +275,10 @@ export function usePath() {
         {
             name: "Breadth First Search",
             function: BFS
+        },
+        {
+            name: "Depth First Search",
+            function: DFS
         }
     ]
 
