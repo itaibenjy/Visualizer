@@ -251,6 +251,7 @@ export function usePath() {
     }
 
     async function mazeGen(){
+        clearVisited();
         setIsVisualizing(true);
         console.log("Maze Gen")
         await MazeGen(gridRef, startNode, endNode, waitGen, setEndNode);
@@ -259,10 +260,9 @@ export function usePath() {
     }
 
     async function waitGen(){
-        if (afterVisualizeRef.current) { return; }
         forceRender();
         return await new Promise(resolve => {
-            setTimeout(resolve, 1);
+            setTimeout(resolve, maxSpeed - speedRef.current);
         });
     }
 
