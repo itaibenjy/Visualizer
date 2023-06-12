@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from 'react';
 import BFS from '../controllers/BFS';
 import Astar from '../controllers/Astar';
-import MazePrimeGen from '../controllers/MazePrimeGen';
+import MazeGen from '../controllers/MazeGen';
 
 export function usePath() {
 
@@ -192,10 +192,6 @@ export function usePath() {
     }, [afterVisualize]);
 
 
-    const Dijkstra = (array) => {
-        console.log("Dijkstra");
-    }
-
     function changeSpeed(event){
         setSpeed(event.target.value);
     }
@@ -257,7 +253,7 @@ export function usePath() {
     async function mazeGen(){
         setIsVisualizing(true);
         console.log("Maze Gen")
-        await MazePrimeGen(gridRef, startNode, endNode, waitGen);
+        await MazeGen(gridRef, startNode, endNode, waitGen, setEndNode);
         console.log("Maze Gen")
         setIsVisualizing(false);
     }

@@ -50,7 +50,7 @@ export default function Pathfinding() {
                 <MDBRange min='0' max='500' value={speed} onChange={changeSpeed} id='customRange' label=''/>
             </MDBContainer>
             <MDBContainer  className="d-flex justify-content-center mt-2 pb-2 mx-2">
-                <MDBTooltip title='Generate Maze' tag='span' placement="bottom">
+                <MDBTooltip title='Generate Maze (Random DFS)' tag='span' placement="bottom">
                     <MDBBtn floating color="dark" className="mx-1"  disabled={isVisualizing} onClick={mazeGen}><MDBIcon fas size="lg" icon="random" /></MDBBtn>
                 </MDBTooltip>
                 <MDBTooltip title='Clear Visited' tag='span' placement="bottom">
