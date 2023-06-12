@@ -32,6 +32,9 @@ export default async function DFS(gridRef, start, end, wait) {
 function getNeighbors(grid, node) {
     const neighbors = [];
     const { row, col } = node;
+    // get all neighbors first left, then up, then right, then down
+    // so the final dfs will go left first then up then right then down if possible 
+    // if all the board is empty it will make a snake like path
     if (row < grid.length - 1) neighbors.push(grid[row + 1][col]);
     if (col < grid[0].length - 1) neighbors.push(grid[row][col + 1]);
     if (row > 0) neighbors.push(grid[row - 1][col]);

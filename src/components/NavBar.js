@@ -8,7 +8,6 @@ import {
   MDBNavbarNav,
   MDBNavbarItem,
   MDBNavbarLink,
-  MDBBtn,
   MDBDropdown,
   MDBDropdownToggle,
   MDBDropdownMenu,
@@ -37,6 +36,10 @@ export default function App() {
     } else {
       setTheme('dark')
     }
+  }
+
+  const navStyle = {
+    color: 'var(--mdb-secondary)',
   }
 
   return (
@@ -70,7 +73,7 @@ export default function App() {
             {/* Path finding */}
             <MDBNavbarItem>
               <Link to="/Visualizer/pathfinding" >
-                <MDBNavbarLink tag="div" style={{color:"var(--mdb-secondary"}}>
+                <MDBNavbarLink tag="div" style={navStyle}>
                   Path Finding
                 </MDBNavbarLink>
               </Link>
@@ -79,20 +82,38 @@ export default function App() {
             {/* Sorting */}
             <MDBNavbarItem>
               <Link to="/Visualizer/sorting" >
-                <MDBNavbarLink tag="div" style={{color:"var(--mdb-secondary"}}>
+                <MDBNavbarLink tag="div" style={navStyle}>
                   Sorting
                 </MDBNavbarLink>
               </Link>
             </MDBNavbarItem>
 
-            {/* Sudoku */}
+            {/* Miscellaneous */}
             <MDBNavbarItem>
-              <Link to="/Visualizer/sudoku" >
-                <MDBNavbarLink tag="div" style={{color:"var(--mdb-secondary"}}>
-                  Sudoku
-                </MDBNavbarLink>
-              </Link>
+              <MDBDropdown>
+                <MDBDropdownToggle tag='div' className='nav-link' role='button' style={navStyle}>
+                  Miscellaneous
+                </MDBDropdownToggle>
+                <MDBDropdownMenu>
+
+                  {/* Sudoku */}
+                  <Link to="/Visualizer/sudoku" >
+                    <MDBDropdownItem className='dropdown-item' style={navStyle} tag="div">
+                          Sudoku
+                    </MDBDropdownItem>
+                  </Link>
+
+                  {/* Tic Tac Toe Minimax*/}
+                  <Link to="/Visualizer/tictactoe" >
+                    <MDBDropdownItem className='dropdown-item' style={navStyle} tag="div">
+                          Tic Tac Toe (Minimax)
+                    </MDBDropdownItem>
+                  </Link>
+
+                </MDBDropdownMenu>
+              </MDBDropdown>
             </MDBNavbarItem>
+
 
             <MDBNavbarItem className='ms-auto'>
               <MDBContainer className='d-flex align-items-center justify-content-start ms-auto mt-2 p-0'>

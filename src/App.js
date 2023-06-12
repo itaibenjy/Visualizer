@@ -7,6 +7,7 @@ import Fotter from "./components/Fotter"
 
 // pages
 import Sudoku from "./pages/Sudoku"
+import TicTacToe from "./pages/TicTacToe"
 import Sorting from "./pages/Sorting"
 import Home from "./pages/Home"
 import Pathfinding from "./pages/Pathfinding"
@@ -22,6 +23,7 @@ function App() {
             <Route path="/Visualizer/sudoku" element={<Sudoku />} />
             <Route path="/Visualizer/sorting" element={<Sorting />} />
             <Route path="/Visualizer/pathfinding" element={<Pathfinding />} />
+            <Route path="/Visualizer/tictactoe" element={<TicTacToe />} />
           </Routes>
           <Fotter />
         </div>
