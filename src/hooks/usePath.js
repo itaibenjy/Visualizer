@@ -45,8 +45,8 @@ export function usePath() {
     const afterVisualizeRef = useRef(afterVisualize);
 
     const cellSize = 30; // The size of each cell in pixels
-    const cols = Math.floor(windowSize.width / cellSize)+1;
-    const rows = Math.floor(windowSize.height / cellSize);
+    const cols = Math.floor(windowSize.width / cellSize) + 1;
+    const rows = windowSize.height > 50 ? Math.floor((windowSize.height-50) / cellSize) : 1 ;
 
     const [startNode, setStartNode] = useState();
     const [endNode, setEndNode] = useState();

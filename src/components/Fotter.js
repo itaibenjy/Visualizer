@@ -17,7 +17,7 @@ export default function App() {
 
     return (<>
         <MailModal basicModal={basicModal} setBasicModal={setBasicModal} />
-        <MDBFooter className='text-center fotter' style={{ position: 'fixed', bottom: 0, width: '100%' }}>
+        <MDBFooter className='text-center fotter semi-transparent' style={{ position: 'fixed', bottom: 0, width: '100%' }}>
             <MDBContainer className='p-2'>
                     <MDBTooltip title='Email' tag='a' placement='top'>
                     <MDBBtn
