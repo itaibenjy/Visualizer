@@ -19,7 +19,7 @@ export function useTyping(text) {
         currentIndex++;
         return text.substring(0, currentIndex);
       });
-    }, 80);
+    }, 60);
 
     return () => {
       clearInterval(typingInterval);
