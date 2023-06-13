@@ -45,8 +45,8 @@ export function usePath() {
     const afterVisualizeRef = useRef(afterVisualize);
 
     const cellSize = 30; // The size of each cell in pixels
-    const cols = Math.floor(windowSize.width / cellSize) + 1;
-    const rows = windowSize.height > 50 ? Math.floor((windowSize.height-50) / cellSize) : 1 ;
+    let cols = Math.floor(windowSize.width / cellSize) + 1;
+    let rows = windowSize.height > 50 ? Math.floor((windowSize.height-50) / cellSize) : 1 ;
 
     const [startNode, setStartNode] = useState();
     const [endNode, setEndNode] = useState();
@@ -57,6 +57,8 @@ export function usePath() {
 
     useEffect(() => {
         const handleResize = () => {
+            cols = Math.floor(windowSize.width / cellSize) + 1;
+            rows = windowSize.height > 50 ? Math.floor((windowSize.height-50) / cellSize) : 1 ;
             setWindowSize({
                 width: window.innerWidth,
                 height: window.innerHeight
@@ -89,7 +91,7 @@ export function usePath() {
         setGrid(newGrid);
         setAfterVisualize(false);
         setIsVisualizing(false);
-    }, [rows, cols, windowSize]);
+    }, [windowSize]);
 
     async function realTimeUpdate(start = startNode, end = endNode) {
         if (afterVisualizeRef.current) {
