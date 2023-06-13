@@ -16,6 +16,7 @@ import {
   MDBSwitch
 } from 'mdb-react-ui-kit';
 import logo from '../assets/images/logo.png';
+import logoDark from '../assets/images/logo-dark.png';
 
 import { Link } from 'react-router-dom';
 
@@ -24,7 +25,7 @@ import { useThemeContext } from '../hooks/useThemeContext';
 export default function App() {
   const [showBasic, setShowBasic] = useState(false);
 
-  const { setTheme } = useThemeContext()
+  const { theme, setTheme } = useThemeContext()
   
   const [switchValue, setSwitchValue] = useState(false);
 
@@ -49,7 +50,7 @@ export default function App() {
         <Link to="/Visualizer/" >
         <MDBNavbarBrand tag="div">
             <img
-              src={logo}
+              src={theme==="light" ? logo : logoDark}
               height='30'
               alt=''
               loading='lazy'
