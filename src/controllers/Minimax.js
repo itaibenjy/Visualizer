@@ -60,7 +60,7 @@ export function isBoardFull(board) {
     return board.every(row => row.every(cell => cell !== 0));
 }
 
-export function getWinner(board) {
+export function getWinner(board, die=false) {
     const lines = [
         // horizontal
         [[0,0], [0,1], [0,2]],
@@ -77,7 +77,13 @@ export function getWinner(board) {
     for (let line of lines) {
         const [a, b, c] = line;
         if (board[a[0]][a[1]] !== 0 && board[a[0]][a[1]] === board[b[0]][b[1]] && board[a[0]][a[1]] === board[c[0]][c[1]]) {
-            return board[a[0]][a[1]];
+            let player = board[a[0]][a[1]];
+            if (die){
+                board[a[0]][a[1]] = 3;
+                board[b[0]][b[1]] = 3;
+                board[c[0]][c[1]] = 3;
+            }
+            return player;
         }
     }
     return null;

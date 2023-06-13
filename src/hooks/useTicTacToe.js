@@ -116,7 +116,7 @@ export function useTicTacToe() {
     }
 
     function checkEndGame(player) {
-        const winner = getWinner(boardRef.current);
+        const winner = getWinner(boardRef.current, true);
         if(winner !== null) {
             setIsGameOver(true);
             setWinner(winner);

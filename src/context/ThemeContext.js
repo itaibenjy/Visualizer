@@ -9,10 +9,10 @@ function ThemeProvider({ children }) {
     var linkElement = document.getElementById('mdb-stylesheet');
 
       if (theme === 'light') {
-        linkElement.href = "./css/mdb.min.css";
+        linkElement.href = "./mdb.min.css";
       } 
       if (theme === 'dark') {
-        linkElement.href = "./css/mdb.dark.min.css";
+        linkElement.href = "./mdb.dark.min.css";
       }
 
   }, [theme]);
