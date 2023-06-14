@@ -13,6 +13,7 @@ export function useFractal() {
     const [initialSize, setInitialSize] = useState(0.17)
     const [reducer , setReducer] = useState(0.78)
     const [leafType, setLeafType] = useState("no")
+    const [favorSide, setFavorSide] = useState(0.5)
     
     const strokeStyle = theme !== "dark" ? "#332d2d" : "#fbfbfb";
 
@@ -161,7 +162,7 @@ export function useFractal() {
     useEffect(() => {
         clearCanvas()
         drawTree(0.5,1,-90,angle, initialSize, reducer, depth)
-    }, [angle, theme, depth, initialSize, reducer, leafType])
+    }, [angle, theme, depth, initialSize, reducer, leafType, favorSide])
 
     function drawTree(x1, y1, initialAngle, rotate, size, reducer, treeDepth, lineWidth = 5) {
         if (treeDepth === 0)  return;
@@ -169,8 +170,8 @@ export function useFractal() {
         const x2 = x1 + (Math.cos(initialAngle * Math.PI / 180) * size);
         const y2 = y1 + (Math.sin(initialAngle * Math.PI / 180) * size);
         drawLine(x1, y1, x2, y2, lineWidth);
-        drawTree(x2, y2, initialAngle - rotate, rotate, size*reducer, reducer, treeDepth - 1, lineWidth*reducer);
-        drawTree(x2, y2, initialAngle + rotate, rotate, size*reducer, reducer, treeDepth - 1, lineWidth*reducer);
+        drawTree(x2, y2, initialAngle - rotate, rotate, size*reducer*(1-favorSide)*2, reducer, treeDepth - 1, lineWidth*reducer);
+        drawTree(x2, y2, initialAngle + rotate, rotate, size*reducer*favorSide*2, reducer, treeDepth - 1, lineWidth*reducer);
         if (treeDepth === 1 && leafType !== "no") drawLeaf(x2, y2, size*500, initialAngle+90, leafType);
     }
 
@@ -193,7 +194,7 @@ export function useFractal() {
 
 
     const canvasProps = {drawLine, canvasRef, contextRef, clearCanvas}
-    const treeProps = {angle, setAngle, depth, setDepth, initialSize, setInitialSize, reducer, setReducer, leafType, setLeafType}
+    const treeProps = {angle, setAngle, depth, setDepth, initialSize, setInitialSize, reducer, setReducer, leafType, setLeafType, favorSide, setFavorSide}
 
 
     return {canvasProps, treeProps, downloadCanvas}

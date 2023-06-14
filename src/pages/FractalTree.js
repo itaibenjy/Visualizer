@@ -68,6 +68,16 @@ export default function FractalTree() {
                     <MDBContainer  className="my-4">
                         <MDBRange
                             max={100}
+                            min={0}
+                            defaultValue={treeProps.favorSide*100}
+                            onChange={(e) => treeProps.setFavorSide(Number(e.target.value)/100)}
+                            id='favorRange'
+                            label='Favor Side (Left <-> Right)'
+                        />
+                    </MDBContainer>
+                    <MDBContainer  className="my-4">
+                        <MDBRange
+                            max={100}
                             min={1}
                             defaultValue={treeProps.initialSize*100}
                             onChange={(e) => treeProps.setInitialSize(Number(e.target.value)/100)}
