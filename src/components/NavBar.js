@@ -47,7 +47,7 @@ export default function App() {
     <MDBNavbar expand='sm' sticky className='semi-transparent'>
       <MDBContainer fluid>
 
-        <Link to="/Visualizer/" >
+        <Link to="/" >
         <MDBNavbarBrand tag="div">
             <img
               src={theme==="light" ? logo : logoDark}
@@ -73,7 +73,7 @@ export default function App() {
 
             {/* Path finding */}
             <MDBNavbarItem>
-              <Link to="/Visualizer/pathfinding" >
+              <Link to="/pathfinding" >
                 <MDBNavbarLink tag="div" style={navStyle}>
                   Path Finding
                 </MDBNavbarLink>
@@ -82,7 +82,7 @@ export default function App() {
 
             {/* Sorting */}
             <MDBNavbarItem>
-              <Link to="/Visualizer/sorting" >
+              <Link to="/sorting" >
                 <MDBNavbarLink tag="div" style={navStyle}>
                   Sorting
                 </MDBNavbarLink>
@@ -98,21 +98,21 @@ export default function App() {
                 <MDBDropdownMenu>
 
                   {/* Sudoku */}
-                  <Link to="/Visualizer/sudoku" >
+                  <Link to="/sudoku" >
                     <MDBDropdownItem className='dropdown-item' style={navStyle} tag="div">
                           Sudoku
                     </MDBDropdownItem>
                   </Link>
 
                   {/* Tic Tac Toe Minimax*/}
-                  <Link to="/Visualizer/tictactoe" >
+                  <Link to="/tictactoe" >
                     <MDBDropdownItem className='dropdown-item' style={navStyle} tag="div">
                           Tic Tac Toe (Minimax)
                     </MDBDropdownItem>
                   </Link>
 
                   {/* Fractal Trees */}
-                  <Link to="/Visualizer/fractaltree" >
+                  <Link to="/fractaltree" >
                     <MDBDropdownItem className='dropdown-item' style={navStyle} tag="div">
                           Fractal Trees
                     </MDBDropdownItem>

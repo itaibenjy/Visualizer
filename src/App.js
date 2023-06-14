@@ -1,5 +1,5 @@
 import React from "react"
-import { BrowserRouter, Routes, Route} from "react-router-dom"
+import { HashRouter, Routes, Route} from "react-router-dom"
 
 // pages and components
 import NavBar from "./components/NavBar"
@@ -16,20 +16,20 @@ import FractalTree from "./pages/FractalTree"
 function App() {
   return (
     <div className="App" >
-      <BrowserRouter>
+      <HashRouter>
         <div >
           <NavBar /> 
           <Routes>
-            <Route path="/Visualizer" element={<Home />} />
-            <Route path="/Visualizer/sudoku" element={<Sudoku />} />
-            <Route path="/Visualizer/sorting" element={<Sorting />} />
-            <Route path="/Visualizer/pathfinding" element={<Pathfinding />} />
-            <Route path="/Visualizer/tictactoe" element={<TicTacToe />} />
-            <Route path="/Visualizer/fractaltree" element={<FractalTree />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/sudoku" element={<Sudoku />} />
+            <Route path="/sorting" element={<Sorting />} />
+            <Route path="/pathfinding" element={<Pathfinding />} />
+            <Route path="/tictactoe" element={<TicTacToe />} />
+            <Route path="/fractaltree" element={<FractalTree />} />
           </Routes>
           <Fotter />
         </div>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }

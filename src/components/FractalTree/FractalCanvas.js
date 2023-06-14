@@ -6,7 +6,7 @@ export default function FractalCanvas({canvasRef, contextRef, drawLine, clearCan
     const {theme} = useThemeContext();
 
     const canvasStyle = {
-        backgroundColor: theme === "dark" ? "var(--mdb-light)" : "var(--mdb-dark)",
+        backgroundColor: theme !== "dark" ? "#ffffff" : "#424242",
     }
   
     useEffect(() => {

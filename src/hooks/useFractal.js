@@ -13,7 +13,8 @@ export function useFractal() {
     const [initialSize, setInitialSize] = useState(0.17)
     const [reducer , setReducer] = useState(0.78)
     const [isLeafs, setIsLeafs] = useState(false)
-  
+    
+    const strokeStyle = theme !== "dark" ? "#332d2d" : "#fbfbfb";
 
 
     // This function will be recreated whenever the canvas context changes.
@@ -34,7 +35,7 @@ export function useFractal() {
         context.moveTo(x1, y1); 
         context.lineTo(x2, y2); 
 
-        context.strokeStyle =  theme === "dark" ? "#332d2d" : "#fbfbfb"; // sets the color to fill
+        context.strokeStyle =  strokeStyle // sets the color to fill
         context.lineWidth = lineWidth; // sets the line width
         context.stroke(); // applies the stroke
   
@@ -62,7 +63,7 @@ export function useFractal() {
       context.lineTo(0, -size * 3); // add a line in the middle of the leaf
       context.fillStyle = "green";
       context.fill();
-      context.strokeStyle =  theme === "dark" ? "#332d2d" : "#fbfbfb"; // sets the color to fill
+      context.strokeStyle =  strokeStyle // sets the color to fill
       context.lineWidth = size / 20;
       context.stroke();
       context.closePath();
