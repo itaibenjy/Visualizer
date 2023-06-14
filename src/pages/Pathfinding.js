@@ -12,16 +12,16 @@ export default function Pathfinding() {
     const [hidden, setHidden] = useState(false);
 
     function  changeCard() {
-        $("#pathCard").fadeOut(500, () => {
+        $("#pathCard").fadeOut(300, () => {
             setHidden(!hidden);
-            $("#pathCard").fadeIn(500);
+            $("#pathCard").fadeIn(300);
         });
     }
 
     function animateChange(fn){
-        $("#all").fadeOut(500, () => {
+        $("#all").fadeOut(300, () => {
             fn();
-            $("#all").fadeIn(500);
+            $("#all").fadeIn(300);
         });
     }
 
@@ -49,7 +49,7 @@ export default function Pathfinding() {
                 <MDBTypography variant='h6' className="mx-2">Speed</MDBTypography>
                 <MDBRange min='0' max='500' value={speed} onChange={changeSpeed} id='customRange' label=''/>
             </MDBContainer>
-            <MDBContainer  className="d-flex justify-content-center mt-2 pb-2 mx-2">
+            <MDBContainer  className="d-flex justify-content-center mt-2 pb-2 mx-2" >
                 <MDBTooltip title='Generate Maze (Random DFS)' tag='span' placement="bottom">
                     <MDBBtn floating color="dark" className="mx-1"  disabled={isVisualizing} onClick={mazeGen}><MDBIcon fas size="lg" icon="random" /></MDBBtn>
                 </MDBTooltip>

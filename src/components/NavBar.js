@@ -44,7 +44,7 @@ export default function App() {
   }
 
   return (
-    <MDBNavbar expand='sm' sticky className='semi-transparent'>
+    <MDBNavbar expand='md' sticky className='semi-transparent'>
       <MDBContainer fluid>
 
         <Link to="/" >

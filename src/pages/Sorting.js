@@ -15,7 +15,7 @@ export default function Sorting() {
             <MDBContainer  className="d-flex justify-content-center my-3">
                 <Select disabled={isVisualizing} children={Algorithms.map((value) => value.name)} selected={Algorithms[selected].name} setSelected={setSelected}/>
             </MDBContainer>
-            <MDBContainer  className="d-flex justify-content-center my-3">
+            <MDBContainer  className="d-flex justify-content-center my-3" id="info">
                 <MDBBtn size="sm" color="danger" className="me-2"></MDBBtn> <MDBTypography className="my-1" tag='h6'>Swaping</MDBTypography>
                 <MDBBtn size="sm" color="warning" className="mx-2"></MDBBtn> <MDBTypography className="my-1" tag='h6'>Compering</MDBTypography>
                 <MDBBtn size="sm" color="info" className="mx-2"></MDBBtn> <MDBTypography className="my-1" tag='h6'>Unsorted</MDBTypography>

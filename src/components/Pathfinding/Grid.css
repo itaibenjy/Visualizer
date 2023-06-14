@@ -44,3 +44,10 @@ div.range {
     height: 1px;
 }
 
+@media (max-width: 576px) {
+  #info, #pathCard {
+    flex-direction: column;
+    align-items: center;
+  }
+
+}
