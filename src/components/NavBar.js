@@ -111,6 +111,13 @@ export default function App() {
                     </MDBDropdownItem>
                   </Link>
 
+                  {/* Fractal Trees */}
+                  <Link to="/Visualizer/fractaltree" >
+                    <MDBDropdownItem className='dropdown-item' style={navStyle} tag="div">
+                          Fractal Trees
+                    </MDBDropdownItem>
+                  </Link>
+
                 </MDBDropdownMenu>
               </MDBDropdown>
             </MDBNavbarItem>

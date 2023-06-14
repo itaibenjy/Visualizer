@@ -1,0 +1,6 @@
+
+canvas.fractal {
+    height: min(50vh, 50vw);
+    width: min(50vh, 50vw);
+    border-radius: 10px;
+}
