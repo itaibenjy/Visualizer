@@ -12,7 +12,7 @@ export function useFractal() {
     const [depth, setDepth] = useState(11)
     const [initialSize, setInitialSize] = useState(0.17)
     const [reducer , setReducer] = useState(0.78)
-    const [isLeafs, setIsLeafs] = useState(false)
+    const [leafType, setLeafType] = useState("no")
     
     const strokeStyle = theme !== "dark" ? "#332d2d" : "#fbfbfb";
 
@@ -43,37 +43,125 @@ export function useFractal() {
       }
     }, [theme]);
 
+    const drawRegularLeaf = (context, size, strokeStyle) => {
+        context.beginPath();
+        context.moveTo(0, 0);
+        context.bezierCurveTo(-size, -size, -size / 2, -size * 2, 0, -size * 3);
+        context.bezierCurveTo(size / 2, -size * 2, size, -size, 0, 0);
+        const gradient = context.createLinearGradient(0, -size * 2, 0, 0);
+        gradient.addColorStop(0, "#00b300");
+        gradient.addColorStop(1, "#004d00");
+        context.fillStyle = gradient;
+        context.strokeStyle = strokeStyle;
+        context.lineWidth = size / 20;
+        context.stroke();
+        context.fill();
+        context.beginPath();
+        context.moveTo(0, 0);
+        context.lineTo(0, -size * 3);
+        context.stroke();
+        context.closePath();
+    }
 
-    const drawLeaf = useCallback((xPercent, yPercent, size, angle) => {
-      const width = canvasRef.current.width;
-      const height = canvasRef.current.height;
-
-      const x = xPercent * width;
-      const y = yPercent * height;
-
-      const context = contextRef.current;
-      context.save(); // save the current context state
-      context.translate(x, y); // move the context to the center of the leaf
-      context.rotate(angle * Math.PI / 180); // rotate the context by the angle
+    const drawMapleLeaf = (context, size, strokeStyle) => {
       context.beginPath();
       context.moveTo(0, 0);
-      context.quadraticCurveTo(-size, -size, -size / 2, -size * 2);
-      context.quadraticCurveTo(0, -size * 4, size / 2, -size * 2);
-      context.quadraticCurveTo(size, -size, 0, 0);
-      context.lineTo(0, -size * 3); // add a line in the middle of the leaf
-      context.fillStyle = "green";
-      context.fill();
-      context.strokeStyle =  strokeStyle // sets the color to fill
+      context.lineTo(-size , 0 );
+      context.lineTo(-size*0.8 , -size*0.2 );
+      context.lineTo(-size*1.5 , -size*0.5 );
+      context.lineTo(-size*1.3, -size*0.6 );
+      context.lineTo(-size*1.45, -size*0.9 );
+      context.lineTo(-size*1.2, -size*0.8 );
+      context.lineTo(-size*1.3, -size*1.1);
+      context.lineTo(-size*0.6, -size);
+      context.lineTo(-size*0.8, -size*1.5);
+      context.lineTo(-size*0.6, -size*1.4);
+      context.lineTo(0 , -size*2.5 );
+      context.lineTo(size*0.6, -size*1.4);
+      context.lineTo(size*0.8, -size*1.5);
+      context.lineTo(size*0.6, -size);
+      context.lineTo(size*1.3, -size*1.1);
+      context.lineTo(size*1.2, -size*0.8 );
+      context.lineTo(size*1.45, -size*0.9 );
+      context.lineTo(size*1.3, -size*0.6 );
+      context.lineTo(size*1.5 , -size*0.5 );
+      context.lineTo(size*0.8 , -size*0.2 );
+      context.lineTo(size, 0 );
+      context.closePath();
+
+      const gradient = context.createLinearGradient(0, -size * 2, 0, 0);
+      gradient.addColorStop(0, "#ff6600");
+      gradient.addColorStop(1, "#b30000");
+      context.fillStyle = gradient;
+      context.strokeStyle = strokeStyle;
       context.lineWidth = size / 20;
       context.stroke();
-      context.closePath();
-      context.restore(); // restore the previous context state
-    }, [theme]);
+      context.fill();
+      context.beginPath();
+      context.moveTo(0, 0);
+      context.lineTo(0, -size * 2.5);
+      context.stroke();
+    }
+
+    const drawCherryBlossomLeaf = (context, size, strokeStyle) => {
+        context.beginPath();
+        // Petal 1
+        context.moveTo(0, -size);
+        context.bezierCurveTo(-size*2, size, -size * 2, -size*3, 0, -size);
+        // Petal 2
+        context.moveTo(0, -size);
+        context.bezierCurveTo(size*2, size, size * 2, -size*3, 0, -size);
+        // Petal 3
+        context.moveTo(0, -size);
+        context.bezierCurveTo(-size*2, -size*3, size*2, -size*3, 0, -size);
+        // Petal 4
+        context.moveTo(0, -size);
+        context.bezierCurveTo(-size*2, size, size*2, size, 0, -size);
+        context.closePath();
+
+        const gradient = context.createLinearGradient(0, -size, 0, size);
+        gradient.addColorStop(0, "#ffccff");
+        gradient.addColorStop(1, "#ff66cc");
+        context.fillStyle = gradient;
+        context.strokeStyle = strokeStyle;
+        context.lineWidth = size / 20;
+        context.stroke();
+        context.fill();
+    }
+
+
+
+    const drawLeaf = useCallback((xPercent, yPercent, size, angle, leafType) => {
+        const width = canvasRef.current.width;
+        const height = canvasRef.current.height;
+
+        const x = xPercent * width;
+        const y = yPercent * height;
+
+        const context = contextRef.current;
+        context.save();
+        context.translate(x, y);
+        context.rotate(angle * Math.PI / 180);
+
+        switch(leafType) {
+            case "regular":
+                drawRegularLeaf(context, size, strokeStyle);
+                break;
+            case "maple":
+                drawMapleLeaf(context, size, strokeStyle);
+                break;
+            case "cherryBlossom":
+                drawCherryBlossomLeaf(context, size, strokeStyle);
+                break;
+        }
+
+        context.restore();
+    }, [theme, leafType]);
 
     useEffect(() => {
         clearCanvas()
         drawTree(0.5,1,-90,angle, initialSize, reducer, depth)
-    }, [angle, theme, depth, initialSize, reducer, isLeafs])
+    }, [angle, theme, depth, initialSize, reducer, leafType])
 
     function drawTree(x1, y1, initialAngle, rotate, size, reducer, treeDepth, lineWidth = 5) {
         if (treeDepth === 0)  return;
@@ -83,7 +171,7 @@ export function useFractal() {
         drawLine(x1, y1, x2, y2, lineWidth);
         drawTree(x2, y2, initialAngle - rotate, rotate, size*reducer, reducer, treeDepth - 1, lineWidth*reducer);
         drawTree(x2, y2, initialAngle + rotate, rotate, size*reducer, reducer, treeDepth - 1, lineWidth*reducer);
-        if (treeDepth === 1 && isLeafs) drawLeaf(x2, y2, size*500, initialAngle+90);
+        if (treeDepth === 1 && leafType !== "no") drawLeaf(x2, y2, size*500, initialAngle+90, leafType);
     }
 
 
@@ -95,10 +183,18 @@ export function useFractal() {
       context.clearRect(0, 0, width, height);
     }
 
+    function downloadCanvas() {
+      const canvas = canvasRef.current;
+      const link = document.createElement('a');
+      link.download = 'My Fractal Tree.png';
+      link.href = canvas.toDataURL()
+      link.click();
+    }
+
 
     const canvasProps = {drawLine, canvasRef, contextRef, clearCanvas}
-    const treeProps = {angle, setAngle, depth, setDepth, initialSize, setInitialSize, reducer, setReducer, isLeafs, setIsLeafs}
+    const treeProps = {angle, setAngle, depth, setDepth, initialSize, setInitialSize, reducer, setReducer, leafType, setLeafType}
 
 
-    return {canvasProps, treeProps}
+    return {canvasProps, treeProps, downloadCanvas}
 }
