@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   MDBContainer,
   MDBNavbar,
@@ -25,17 +25,22 @@ import { useThemeContext } from '../hooks/useThemeContext';
 export default function App() {
   const [showBasic, setShowBasic] = useState(false);
 
-  const { theme, setTheme } = useThemeContext()
+  const { theme, updateTheme } = useThemeContext()
   
   const [switchValue, setSwitchValue] = useState(false);
 
+   useEffect(() => {
+    if (theme === 'dark') {
+      setSwitchValue(true)
+    }
+  },[theme])
 
   function handleSwitch(event) {
     setSwitchValue(event.target.checked)
     if (switchValue) {
-      setTheme('light')
+      updateTheme('light')
     } else {
-      setTheme('dark')
+      updateTheme('dark')
     }
   }
 

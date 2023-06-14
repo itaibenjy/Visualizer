@@ -17,8 +17,22 @@ function ThemeProvider({ children }) {
 
   }, [theme]);
 
+
+  useEffect(() => {
+    const savedTheme = document.cookie.split('; ').find(row => row.startsWith('theme=')).split('=')[1];
+    console.log(savedTheme)
+    if (savedTheme) {
+      setTheme(savedTheme);
+    }
+  }, []);
+
+  function updateTheme(th) {
+    setTheme(th);
+    document.cookie = `theme=${th}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
+  }
+
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <ThemeContext.Provider value={{ theme, updateTheme }}>
       {children}
     </ThemeContext.Provider>
   );
