@@ -4,3 +4,15 @@ canvas.fractal {
     width: min(50vh, 50vw);
     border-radius: 10px;
 }
+
+@media (min-width: 1200px) {
+  #Two-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  #Two-cards > * {
+    margin: 0 1rem;
+  }
+}
