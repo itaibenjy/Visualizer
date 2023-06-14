@@ -1,5 +1,5 @@
 
-import { MDBBtn, MDBContainer, MDBRange, MDBTypography, MDBRadio } from "mdb-react-ui-kit";
+import { MDBBtn, MDBContainer, MDBRange, MDBTypography, MDBRadio, MDBCheckbox } from "mdb-react-ui-kit";
 import FractalCanvas from "../components/FractalTree/FractalCanvas";
 import {useFractal} from "../hooks/useFractal"
 import {useState} from "react"
@@ -90,6 +90,9 @@ export default function FractalTree() {
                         <MDBRadio name='inlineRadioLeaf' id='inlineRadio2' value='regular' label='Regular' inline checked={treeProps.leafType === "regular"} onChange={changeType} disabled={leafDisabled}/>
                         <MDBRadio name='inlineRadioLeaf' id='inlineRadio3' value='maple' label='Maple' inline checked={treeProps.leafType === "maple"} onChange={changeType} disabled={leafDisabled}/>
                         <MDBRadio name='inlineRadioLeaf' id='inlineRadio4' value='cherryBlossom' label='Blossom' inline checked={treeProps.leafType === "cherryBlossom"} onChange={changeType} disabled={leafDisabled}/>
+                    </MDBContainer> 
+                    <MDBContainer  className="d-flex justify-content-start my-2" id="radioCon">
+                        <MDBCheckbox label="Wind" id="windCheck" checked={treeProps.isWind} onChange={() => treeProps.setIsWind(!treeProps.isWind)} />
                     </MDBContainer> 
                 </MDBContainer>
             </MDBContainer> 

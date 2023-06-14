@@ -14,9 +14,23 @@ export function useFractal() {
     const [reducer , setReducer] = useState(0.78)
     const [leafType, setLeafType] = useState("no")
     const [favorSide, setFavorSide] = useState(0.5)
+    const [isWind, setIsWind] = useState(false)
+    const [wind, setWind] = useState(0)
     
     const strokeStyle = theme !== "dark" ? "#332d2d" : "#fbfbfb";
 
+    // animate wind 
+    useEffect(() => {
+        if (isWind) {
+            const interval = setInterval(() => {
+                setWind(prevWind => prevWind + Math.random() * 1-0.5)
+            }, 50);
+            return () => clearInterval(interval);
+        }
+        else {
+            setWind(0)
+        }
+    }, [isWind]);
 
     // This function will be recreated whenever the canvas context changes.
     const drawLine = useCallback((x1Percent, y1Percent, x2Percent, y2Percent, lineWidth) => {
@@ -139,6 +153,16 @@ export function useFractal() {
         const x = xPercent * width;
         const y = yPercent * height;
 
+        if (isWind){
+          if(angle < 0) angle = 360 + angle;
+          if(wind > 0) {
+            angle = 90 + (Math.random() * 70 - 35)
+          }
+          if(wind < 0) {
+            angle = 270 + (Math.random() * 70 - 35)
+          }
+        }
+
         const context = contextRef.current;
         context.save();
         context.translate(x, y);
@@ -157,18 +181,23 @@ export function useFractal() {
         }
 
         context.restore();
-    }, [theme, leafType]);
+    }, [theme, leafType, isWind, wind]);
 
     useEffect(() => {
         clearCanvas()
         drawTree(0.5,1,-90,angle, initialSize, reducer, depth)
-    }, [angle, theme, depth, initialSize, reducer, leafType, favorSide])
+    }, [angle, theme, depth, initialSize, reducer, leafType, favorSide, wind, isWind])
 
     function drawTree(x1, y1, initialAngle, rotate, size, reducer, treeDepth, lineWidth = 5) {
         if (treeDepth === 0)  return;
         // make the x2 and y2 be between 0 and 1 for precetage representation
-        const x2 = x1 + (Math.cos(initialAngle * Math.PI / 180) * size);
-        const y2 = y1 + (Math.sin(initialAngle * Math.PI / 180) * size);
+        let x2 = x1 + (Math.cos(initialAngle * Math.PI / 180) * size);
+        let y2 = y1 + (Math.sin(initialAngle * Math.PI / 180) * size);
+
+        if(isWind){
+          x2 = x1 + (Math.cos((initialAngle + wind) * Math.PI / 180) * size);
+          y2 = y1 + (Math.sin((initialAngle + wind) * Math.PI / 180) * size);
+        }
         drawLine(x1, y1, x2, y2, lineWidth);
         drawTree(x2, y2, initialAngle - rotate, rotate, size*reducer*(1-favorSide)*2, reducer, treeDepth - 1, lineWidth*reducer);
         drawTree(x2, y2, initialAngle + rotate, rotate, size*reducer*favorSide*2, reducer, treeDepth - 1, lineWidth*reducer);
@@ -194,7 +223,7 @@ export function useFractal() {
 
 
     const canvasProps = {drawLine, canvasRef, contextRef, clearCanvas}
-    const treeProps = {angle, setAngle, depth, setDepth, initialSize, setInitialSize, reducer, setReducer, leafType, setLeafType, favorSide, setFavorSide}
+    const treeProps = {angle, setAngle, depth, setDepth, initialSize, setInitialSize, reducer, setReducer, leafType, setLeafType, favorSide, setFavorSide, isWind, setIsWind, wind, setWind}
 
 
     return {canvasProps, treeProps, downloadCanvas}
