@@ -5,6 +5,11 @@ import CV from "../assets/CV.pdf"
 
 
 
+/**
+ * Renders the Home page of the Visualizer app, which is a personal project of the author to explore algorithms and programming.
+ * The page includes a brief introduction of the author's journey in algorithms, visualizations of sorting and pathfinding algorithms, and a call to action for job opportunities and collaboration.
+ * @returns {JSX.Element} The Home page component.
+ */
 export default function Home() {
 
     return (<div className="pageContainer">

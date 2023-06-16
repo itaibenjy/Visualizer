@@ -10,6 +10,14 @@ import {
   MDBModalFooter,
 } from 'mdb-react-ui-kit';
 
+
+/**
+ * Renders a modal component that displays the author's email address and a message about job opportunities.
+ * @param {Object} props - The props object.
+ * @param {boolean} props.basicModal - A boolean value that determines whether the modal is displayed or not.
+ * @param {function} props.setBasicModal - A function that sets the value of basicModal.
+ * @returns {JSX.Element} - A JSX element that represents the MailModal component.
+ */
 export default function MailModal({basicModal, setBasicModal}) {
 
   const toggleShow = () => setBasicModal(!basicModal);

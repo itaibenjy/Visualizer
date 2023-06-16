@@ -1,4 +1,10 @@
-
+/**
+ * Solves a given Sudoku board using recursive backtracking.
+ * @param {Array<Array<string>>} board - The Sudoku board to solve.
+ * @param {Function} animateSetBoard - A function to animate the board as it is being solved.
+ * @param {Object} isSolvingRef - A reference to a boolean value indicating whether the solving process should be stopped.
+ * @returns {Promise<boolean>} - A promise that resolves to true if the board is solvable, false otherwise.
+ */
 export async function sudokuSolver(board, animateSetBoard , isSolvingRef){
     // Initialize rows, columns, and boxes.
     const rows = new Array(9).fill(null).map(() => new Set());
@@ -62,7 +68,10 @@ export async function sudokuSolver(board, animateSetBoard , isSolvingRef){
     return await sovler();
 }
 
-
+/**
+ * Generates a new Sudoku board.
+ * @returns {Array<Array<string>>} - A new Sudoku board.
+ */
 export function generateSudokuBoard() {
 
     // Initialize rows, columns, and boxes.

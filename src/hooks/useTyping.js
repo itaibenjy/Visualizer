@@ -1,9 +1,13 @@
 import {useState, useEffect} from 'react';
 
-
+/**
+ * A custom hook that simulates typing of a given text.
+ * @param {string} text - The text to be typed.
+ * @returns {string} - The current state of the typing simulation.
+ */
 export function useTyping(text) {
 
-    // symulate Ai typing with string passed in just useTyping(string) instead of passing string as state
+  // symulate Ai typing with string passed in just useTyping(string) instead of passing string as state
   const [typingState, setTypingState] = useState('');
 
   useEffect(() => {
@@ -28,4 +32,3 @@ export function useTyping(text) {
 
   return typingState;
 }
-

@@ -10,10 +10,13 @@ import {
 } from 'mdb-react-ui-kit';
 import MailModal from './MailModal';
 
-export default function App() {
+/**
+ * Renders a footer component with links to email, LinkedIn, and GitHub.
+ * @returns {JSX.Element} The footer component.
+ */
+export default function Footer() {
 
     const [basicModal, setBasicModal] = useState(false);
-
 
     return (<>
         <MailModal basicModal={basicModal} setBasicModal={setBasicModal} />

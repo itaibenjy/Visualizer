@@ -1,10 +1,22 @@
+/**
+ * Represents an agent that moves in a random direction until it reaches the end node or can no longer move.
+ */
 class Agent {
+    /**
+     * Creates an instance of Agent.
+     * @param {Object} startNode - The starting node for the agent.
+     * @param {Object} [node=startNode] - The current node for the agent.
+     */
     constructor(startNode, node = startNode) {
         this.startNode = startNode;
         this.node = node;
     }
 
-    // Agent tries to move in a random direction
+    /**
+     * Moves the agent in a random direction until it reaches the end node or can no longer move.
+     * @param {Array} gridRef - The reference to the grid.
+     * @returns {Object} - The new node the agent moved to.
+     */
     move(gridRef,) {
         let directions = [
             [-1, 0], // Up
@@ -50,6 +62,15 @@ class Agent {
     }
 }
 
+/**
+ * Performs a swarm search on the grid to find the shortest path from the start node to the end node.
+ * @param {Array} gridRef - The reference to the grid.
+ * @param {Object} startNode - The starting node for the search.
+ * @param {Object} endNode - The ending node for the search.
+ * @param {Function} wait - The function to wait for the screen to update.
+ * @param {Number} [numberOfAgents=8] - The number of agents to use for the search.
+ * @returns {Object} - An object containing the path and whether the end node was found.
+ */
 export default async function swarmSearch(gridRef, startNode, endNode, wait, numberOfAgents=8) {
     // Create an array of agents at the start node ( numberOfAgents )
     let agents = [];

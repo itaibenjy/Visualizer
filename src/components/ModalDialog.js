@@ -10,6 +10,18 @@ import {
   MDBModalFooter,
 } from 'mdb-react-ui-kit';
 
+/**
+ * A modal dialog component that displays a title, content, and buttons.
+ * @param {string} title - The title of the modal dialog.
+ * @param {string} content - The content to be displayed in the modal dialog.
+ * @param {string} btnLabel - The label for the button displayed in the modal dialog.
+ * @param {string} btnColor - The color of the button displayed in the modal dialog.
+ * @param {function} handleClick - The function to be called when the button is clicked.
+ * @param {boolean} showModel - A boolean value indicating whether the modal dialog should be displayed or not.
+ * @param {function} setShowModal - A function to set the state of the modal dialog.
+ * @param {function} toggleShow - A function to toggle the state of the modal dialog.
+ * @returns {JSX.Element} - A modal dialog component.
+ */
 export default function ModalDialog({title, content, btnLabel, btnColor, handleClick, showModel, setShowModal, toggleShow}) {
 
   return (

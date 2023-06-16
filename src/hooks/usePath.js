@@ -6,6 +6,20 @@ import DFS from '../controllers/DFS';
 import MazeGen from '../controllers/MazeGen';
 import SwarmSearch from '../controllers/Swarm';
 
+/**
+ * This hook contains functions for updating the pathfinding grid and visualizing the pathfinding algorithm in real time.
+ * @returns {Object} An object containing the following properties:
+ * - grid: a 2D array of Node objects representing the pathfinding grid
+ * - startNode: the starting Node object
+ * - endNode: the ending Node object
+ * - setType: a string representing the type of Node to set (wall, unwall, start, or end)
+ * - setIsVisualizing: a function to set the isVisualizing state
+ * - isVisualizing: a boolean representing whether the pathfinding algorithm is currently visualizing
+ * - realTimeUpdate: a function to update the shortest path with the chosen algorithm in real time
+ * - updateColor: a function to update the color of a Node on the grid based on the selected type
+ * - afterVisualize: a boolean representing whether the pathfinding algorithm has finished visualizing
+ * - setAfterVisualize: a function to set the afterVisualize state
+ */
 export function usePath() {
 
 
@@ -53,10 +67,17 @@ export function usePath() {
     const [startNode, setStartNode] = useState();
     const [endNode, setEndNode] = useState();
 
+
+    /**
+     * force render the page
+     */
     function forceRender() {
         setForceUpdate(prev => prev + 1);
     }
 
+    /**
+     * This side effect is used to add event listeners to the window for resizing the grid
+     */
     useEffect(() => {
         const handleResize = () => {
             cols = Math.floor(windowSize.width / cellSize) + 1;
@@ -67,8 +88,15 @@ export function usePath() {
             });
         };
 
+        const handleMount = () => {
+            window.scrollTo(0, 0);
+            document.body.classList.add('no-scroll');
+        };
+
         window.addEventListener('resize', handleResize);
+        
         document.body.classList.add('no-scroll');
+        handleMount();
 
         return () => {
             window.removeEventListener('resize', handleResize);
@@ -77,6 +105,9 @@ export function usePath() {
         };
     }, []);
 
+    /**
+     * This side effect is used for resizing the grid when the window size changes 
+     */
     useEffect(() => {
         const newGrid = [];
         for (let i = 0; i < rows; i++) {
@@ -95,6 +126,11 @@ export function usePath() {
         setIsVisualizing(false);
     }, [windowSize]);
 
+    /**
+     * This function is used to find and update the shortest path with the chosen algorithm in real time
+     * @param {Node} start The start node
+     * @param {Node} end The end node
+     */
     async function realTimeUpdate(start = startNode, end = endNode) {
         if (afterVisualizeRef.current) {
             for (let i = 0; i < grid.length; i++) {
@@ -113,6 +149,9 @@ export function usePath() {
         }
     }
 
+    /**
+     * This function is used to add a delay between pathfinding steps
+     */
     async function wait() {
         if (afterVisualizeRef.current) { return; }
         forceRender();
@@ -121,7 +160,27 @@ export function usePath() {
         });
     }
 
+   
 
+
+    /**
+     * This hook contains the logic for pathfinding and grid manipulation.
+     * @returns {Object} An object containing the necessary functions and state variables for pathfinding and grid manipulation.
+     */
+    async function wait() {
+        if (afterVisualizeRef.current) { return; }
+        forceRender();
+        return await new Promise(resolve => {
+            setTimeout(resolve, maxSpeed - speedRef.current);
+        });
+    }
+
+    /**
+     * Updates the color of a node on the grid based on the current set type.
+     * @param {number} row - The row index of the node.
+     * @param {number} col - The column index of the node.
+     * @param {boolean} isMove - A flag indicating whether the node is being moved.
+     */
     async function updateColor(row, col, isMove = false) {
 
         switch (setType) {
@@ -153,6 +212,12 @@ export function usePath() {
 
     };
 
+    /**
+     * Updates the start node on the grid.
+     * @param {number} row - The row index of the new start node.
+     * @param {number} col - The column index of the new start node.
+     * @param {boolean} isMove - A flag indicating whether the node is being moved.
+     */
     function updateStart(row, col, isMove){
         for (let i = 0; i < grid.length; i++) {
             for (let j = 0; j < grid[i].length; j++) {
@@ -166,6 +231,11 @@ export function usePath() {
         }
     }
 
+    /**
+     * Updates the end node on the grid.
+     * @param {number} row - The row index of the new end node.
+     * @param {number} col - The column index of the new end node.
+     */
     function updateEnd(row, col){
         for (let i = 0; i < grid.length; i++) {
             for (let j = 0; j < grid[i].length; j++) {
@@ -178,29 +248,47 @@ export function usePath() {
             realTimeUpdate(startNode, grid[row][col]);
         }
     }
-    
 
+    /**
+     * Updates the speed reference when the speed state changes.
+     */
     useEffect(() => {
         speedRef.current = speed;
     } , [speed]);
 
+    /**
+     * Updates the isVisualizingRef reference when the isVisualizing state changes.
+     */
     useEffect(() => {
         isVisualizingRef.current = isVisualizing;
     }, [isVisualizing]); 
 
+    /**
+     * Updates the gridRef reference when the grid state changes.
+     */
     useEffect(() => {
         gridRef.current = grid;
     }, [grid]);
 
+    /**
+     * Updates the afterVisualizeRef reference when the afterVisualize state changes.
+     */
     useEffect(() => {
         afterVisualizeRef.current = afterVisualize;
     }, [afterVisualize]);
 
-
+    /**
+     * Changes the speed state when the speed slider is moved.
+     * @param {Object} event - The event object.
+     */
     function changeSpeed(event){
         setSpeed(event.target.value);
     }
 
+    /**
+     * Executes the selected algorithm and visualizes the pathfinding process.
+     * @param {Object} algorithm - The algorithm object containing the name and function properties.
+     */
     async function excecuteAlgorithm(algorithm){
         setIsVisualizing(true);
         clearVisited();
@@ -212,11 +300,18 @@ export function usePath() {
         setIsVisualizing(false);
     }
 
+    /**
+     * Starts the pathfinding visualization process.
+     */
     async function startVisualizing(){
         setAfterVisualize(false)
         excecuteAlgorithm(Algorithms[selected]);
     }
 
+    /**
+     * Animates the pathfinding process by highlighting the nodes in the path.
+     * @param {Array} path - The array of nodes in the path.
+     */
     async function pathFind(path){
         for (let i = 0; i < path.length; i++) {
             path[i].isPath = true;
@@ -224,6 +319,9 @@ export function usePath() {
         }
     }
 
+    /**
+     * Clears the visited, current, path, previousNode, and distance properties of all nodes on the grid.
+     */
     function clearVisited(){
         const newGrid = [...grid];
         for (let i = 0; i < newGrid.length; i++) {
@@ -239,6 +337,9 @@ export function usePath() {
         setAfterVisualize(false);
     }
 
+    /**
+     * Clears the visited, current, path, wall, previousNode, and distance properties of all nodes on the grid.
+     */
     function clearAll(){
         const newGrid = [...grid];
         for (let i = 0; i < newGrid.length; i++) {
@@ -255,6 +356,9 @@ export function usePath() {
         setAfterVisualize(false);
     }
 
+    /**
+     * Generates a maze on the grid using the selected algorithm.
+     */
     async function mazeGen(){
         clearVisited();
         setIsVisualizing(true);
@@ -264,6 +368,9 @@ export function usePath() {
         setIsVisualizing(false);
     }
 
+    /**
+     * Adds a delay between maze generation steps.
+     */
     async function waitGen(){
         forceRender();
         return await new Promise(resolve => {
@@ -271,6 +378,10 @@ export function usePath() {
         });
     }
 
+
+    /**
+     * The array of algorithm objects containing the name and function properties.
+     */
     const Algorithms = [
         {
             name: "A*",
@@ -291,7 +402,9 @@ export function usePath() {
     ]
 
     const gridProps = {grid, updateColor, cellSize, cols, rows, setIsMouseDown, isMouseDown, setSetType, realTimeUpdate}
+    const actionProps = {speed, changeSpeed, startVisualizing, isVisualizing, clearVisited, clearAll, mazeGen}
+    const algorithmProps = {Algorithms, selected, setSelected, agentsSelected, setAgentsSelected}
 
 
-    return {gridProps, speed, changeSpeed, startVisualizing, isVisualizing, Algorithms, clearVisited, clearAll, mazeGen, selected, setSelected, agentsSelected, setAgentsSelected}
+    return {gridProps, actionProps, algorithmProps}
 }

@@ -1,5 +1,11 @@
-
-
+/**
+ * Performs a breadth-first search algorithm on a grid to find the shortest path between a start node and an end node.
+ * @param {Object} gridRef - A reference to the grid object.
+ * @param {Object} startNode - The starting node for the search.
+ * @param {Object} end - The ending node for the search.
+ * @param {Function} wait - A function that returns a promise that resolves after a certain amount of time.
+ * @returns {Object} An object containing the path (an array of nodes) and a boolean indicating whether the end node was found.
+ */
 export default async function BFS(gridRef, startNode, end, wait) {
     const grid = gridRef.current;
     const queue = [];
@@ -39,6 +45,12 @@ export default async function BFS(gridRef, startNode, end, wait) {
 
 }
 
+/**
+ * Returns an array of unvisited neighboring nodes for a given node.
+ * @param {Object} node - The node to find neighbors for.
+ * @param {Array} grid - The grid of nodes.
+ * @returns {Array} An array of neighboring nodes.
+ */
 function getNeighbors(node, grid) {
     let neighbors = [];
     let { row, col } = node;

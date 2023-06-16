@@ -6,6 +6,11 @@ import { useTicTacToe } from '../hooks/useTicTacToe';
 import { useTyping } from "../hooks/useTyping";
 
 
+
+/**
+ * Renders the TicTacToe game page.
+ * @returns {JSX.Element} The TicTacToe game page.
+ */
 export default function TicTacToe() {
     const {board, startGame, playerChose, isPlayerTurn, isGameOver, winner, aiSentence} = useTicTacToe();
     const props = {board, isPlayerTurn, playerChose};

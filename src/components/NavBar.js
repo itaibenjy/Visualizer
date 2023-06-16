@@ -22,7 +22,11 @@ import { Link } from 'react-router-dom';
 
 import { useThemeContext } from '../hooks/useThemeContext';
 
-export default function App() {
+/**
+ * NavBar component that displays a navigation bar with links to different pages and a theme switcher.
+ * @returns {JSX.Element} The NavBar component.
+ */
+export default function NavBar() {
   const [showBasic, setShowBasic] = useState(false);
 
   const { theme, updateTheme } = useThemeContext()

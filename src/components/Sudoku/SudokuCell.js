@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
 import { MDBContainer, MDBInput } from 'mdb-react-ui-kit';
 
+/**
+ * A component that represents a single cell in a Sudoku board.
+ * @param {Object} props - The props object that contains the following properties:
+ * @param {Array} props.board - The Sudoku board represented as a 2D array.
+ * @param {number} props.row - The row index of the cell.
+ * @param {number} props.col - The column index of the cell.
+ * @param {function} props.onValueChange - A callback function that is called when the value of the cell changes.
+ * @param {Object} props.style - An object that contains the inline style for the cell.
+ * @returns {JSX.Element} - A JSX element that represents a single cell in a Sudoku board.
+ */
 const SudokuCell = ({ board, row, col, onValueChange, style}) => {
 
   const handleChange = (event) => {

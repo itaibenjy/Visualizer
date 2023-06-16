@@ -1,4 +1,9 @@
-
+/**
+ * Returns an array of wall nodes that are neighbors of the given node.
+ * @param {Array<Array<Node>>} grid - The grid of nodes.
+ * @param {Node} node - The node to get the wall neighbors of.
+ * @returns {Array<Node>} - An array of wall nodes that are neighbors of the given node.
+ */
 function getWallNeighbors(grid, node) {
     // the neighbors of a wall node are the nodes that are 2 nodes away from it 
     // because the maze is 2 times smaller than the grid due to the walls being full blocks 
@@ -11,6 +16,13 @@ function getWallNeighbors(grid, node) {
     return neighbors.filter(neighbor => neighbor.isWall);
 }
 
+/**
+ * Returns the node that is in the middle of two nodes to connect the paths.
+ * @param {Array<Array<Node>>} grid - The grid of nodes.
+ * @param {Node} nodeA - The first node.
+ * @param {Node} nodeB - The second node.
+ * @returns {Node} - The node that is in the middle of the two nodes.
+ */
 function getBetweenNode(grid, nodeA, nodeB) {
     // the node between two nodes is the node that is in the middle of them to connect the paths
     const row = (nodeA.row + nodeB.row) / 2;
@@ -18,7 +30,14 @@ function getBetweenNode(grid, nodeA, nodeB) {
     return grid[row][col];
 }
 
-
+/**
+ * Generates a maze using the recursive backtracking algorithm.
+ * @param {Object} gridRef - A reference to the grid object.
+ * @param {Node} start - The starting node.
+ * @param {Node} end - The ending node.
+ * @param {Function} wait - A function that returns a promise that resolves after a certain amount of time.
+ * @param {Function} setEnd - A function that sets the end node.
+ */
 export default async function recursiveMazeGen(gridRef, start, end, wait, setEnd) {
     // make a 2 times smaller grid 
     const grid = gridRef.current;

@@ -1,4 +1,9 @@
 
+/**
+ * Returns the best move for the AI player using the minimax algorithm.
+ * @param {number[][]} board - The current state of the game board.
+ * @returns {{row: number, col: number}} - The row and column of the best move.
+ */
 export function getMinimaxMove(board) {
     let boardCopy = board.map(row => [...row]);
     let bestScore = -Infinity;
@@ -21,6 +26,13 @@ export function getMinimaxMove(board) {
     return bestMove;
 }
 
+/**
+ * Returns the score of the current board state for the given player using the minimax algorithm.
+ * @param {number[][]} board - The current state of the game board.
+ * @param {number} player - The player for whom to calculate the score.
+ * @param {boolean} isMaximizing - Whether the current player is maximizing or minimizing.
+ * @returns {number} - The score of the current board state for the given player.
+ */
 function minimax(board, player, isMaximizing) {
     const winner = getWinner(board);
     if (winner === 1) return -1;
@@ -56,11 +68,21 @@ function minimax(board, player, isMaximizing) {
     }
 }
 
+/**
+ * Returns whether the game board is full.
+ * @param {number[][]} board - The current state of the game board.
+ * @returns {boolean} - Whether the game board is full.
+ */
 export function isBoardFull(board) {
     return board.every(row => row.every(cell => cell !== 0));
 }
 
-export function getWinner(board, die=false) {
+/**
+ * Returns the winner of the game, if any.
+ * @param {number[][]} board - The current state of the game board.
+ * @returns {number} - The winner of the game, if any.
+ */
+export function getWinner(board, dye=false) {
     const lines = [
         // horizontal
         [[0,0], [0,1], [0,2]],
@@ -78,7 +100,7 @@ export function getWinner(board, die=false) {
         const [a, b, c] = line;
         if (board[a[0]][a[1]] !== 0 && board[a[0]][a[1]] === board[b[0]][b[1]] && board[a[0]][a[1]] === board[c[0]][c[1]]) {
             let player = board[a[0]][a[1]];
-            if (die){
+            if (dye){
                 board[a[0]][a[1]] = 3;
                 board[b[0]][b[1]] = 3;
                 board[c[0]][c[1]] = 3;

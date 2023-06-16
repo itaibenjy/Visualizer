@@ -1,5 +1,9 @@
-
-
+/**
+ * Sorts an array using the bubble sort algorithm.
+ * @param {Object} arrayRef - A reference to the array to be sorted.
+ * @param {Function} compare - A function that compares two elements of the array.
+ * @param {Function} swap - A function that swaps two elements of the array.
+ */
 export async function BubbleSort(arrayRef, compare, swap) {
     let isSorted = false;
     let counter = 0;
@@ -16,6 +20,13 @@ export async function BubbleSort(arrayRef, compare, swap) {
     }
 }
 
+
+/**
+ * Sorts an array using the insertion sort algorithm.
+ * @param {Object} arrayRef - A reference to the array to be sorted.
+ * @param {Function} compare - A function that compares two elements of the array.
+ * @param {Function} swap - A function that swaps two elements of the array.
+ */
 export async function InsertionSort(arrayRef, compare, swap) {
     for (let i = 1; i < arrayRef.current.length; i++) {
         let j = i;
@@ -28,6 +39,12 @@ export async function InsertionSort(arrayRef, compare, swap) {
 }
 
 
+/**
+ * Sorts an array using the selection sort algorithm.
+ * @param {Object} arrayRef - A reference to the array to be sorted.
+ * @param {Function} compare - A function that compares two elements of the array.
+ * @param {Function} swap - A function that swaps two elements of the array.
+ */
 export async function SelectionSort(arrayRef, compare, swap) {
     for (let i = 0; i < arrayRef.current.length - 1; i++) {
         let minIndex = i;
@@ -43,10 +60,25 @@ export async function SelectionSort(arrayRef, compare, swap) {
 
 
 
+/**
+ * Sorts an array using the merge sort algorithm.
+ * @param {Object} arrayRef - A reference to the array to be sorted.
+ * @param {Function} compare - A function that compares two elements of the array.
+ * @param {Function} mergeSwap - A function that swaps two elements of the array during the merge process.
+ */
 export async function MergeSort(arrayRef, compare, mergeSwap) {
     await mergeHelper(arrayRef, 0, arrayRef.current.length - 1, compare, mergeSwap);
 }
 
+
+/**
+ * Recursively divides an array into halves and merges them using the merge function.
+ * @param {Object} arrayRef - A reference to the array to be sorted.
+ * @param {number} start - The starting index of the array to be sorted.
+ * @param {number} end - The ending index of the array to be sorted.
+ * @param {Function} compare - A function that compares two elements of the array.
+ * @param {Function} mergeSwap - A function that swaps two elements of the array during the merge process.
+ */
 async function mergeHelper(arrayRef, start, end, compare, mergeSwap) {
     if (start >= end) {
         return;
@@ -57,6 +89,16 @@ async function mergeHelper(arrayRef, start, end, compare, mergeSwap) {
     await merge(arrayRef, start, middle, end, compare, mergeSwap);
 }
 
+/**
+ * Merges two sorted subarrays into a single sorted subarray.
+ * @param {Object} arrayRef - A reference to the array to be sorted.
+ * @param {number} start - The starting index of the first subarray.
+ * @param {number} middle - The ending index of the first subarray.
+ * @param {number} end - The ending index of the second subarray.
+ * @param {Function} compare - A function that compares two elements of the array.
+ * @param {Function} mergeSwap - A function that swaps two elements of the array during the merge process.
+ * @returns {Promise<void>} - A Promise that resolves when the subarray is merged.
+ */
 async function merge(arrayRef, start, middle, end, compare, mergeSwap) {
     let i = start;
     let j = middle + 1;
@@ -75,10 +117,27 @@ async function merge(arrayRef, start, middle, end, compare, mergeSwap) {
     }
 }
 
+
+
+/**
+ * Sorts an array using the quick sort algorithm.
+ * @param {Object} arrayRef - A reference to the array to be sorted.
+ * @param {Function} compare - A function that compares two elements of the array.
+ * @param {Function} swap - A function that swaps two elements of the array.
+ */
 export async function QuickSort(arrayRef, compare, swap) { 
     await quickHelper(arrayRef, 0, arrayRef.current.length - 1, compare, swap);
 }
 
+/**
+ * Helper function for the quick sort algorithm that recursively partitions the array.
+ * @param {Object} arrayRef - A reference to the array to be sorted.
+ * @param {number} start - The starting index of the subarray to be sorted.
+ * @param {number} end - The ending index of the subarray to be sorted.
+ * @param {Function} compare - A function that compares two elements of the array.
+ * @param {Function} swap - A function that swaps two elements of the array.
+ * @returns {Promise<void>} - A Promise that resolves when the subarray is sorted.
+ */
 async function quickHelper(arrayRef, start, end, compare, swap) {
     if (start < end) {
         let pivotIndex = await partition(arrayRef, start, end, compare, swap);
@@ -87,6 +146,15 @@ async function quickHelper(arrayRef, start, end, compare, swap) {
     }
 }
 
+/**
+ * Partitions the subarray around a pivot value and returns the index of the pivot.
+ * @param {Object} arrayRef - A reference to the array to be sorted.
+ * @param {number} start - The starting index of the subarray to be partitioned.
+ * @param {number} end - The ending index of the subarray to be partitioned.
+ * @param {Function} compare - A function that compares two elements of the array.
+ * @param {Function} swap - A function that swaps two elements of the array.
+ * @returns {Promise<number>} - A Promise that resolves with the index of the pivot.
+ */
 async function partition(arrayRef, start, end, compare, swap) {
     let pivotIndex = end;
     let pivotValue = arrayRef.current[pivotIndex];
@@ -104,6 +172,12 @@ async function partition(arrayRef, start, end, compare, swap) {
 
 
 
+/**
+ * Sorts an array using the heap sort algorithm.
+ * @param {Object} arrayRef - A reference to the array to be sorted.
+ * @param {Function} compare - A function that compares two elements of the array.
+ * @param {Function} swap - A function that swaps two elements of the array.
+ */
 export async function HeapSort(arrayRef, compare, swap) {
     await heapify(arrayRef, arrayRef.current.length, compare, swap);
     let end = arrayRef.current.length - 1;
@@ -114,6 +188,14 @@ export async function HeapSort(arrayRef, compare, swap) {
     }
 }
 
+/**
+ * Heapifies an array to satisfy the heap property.
+ * @param {Object} arrayRef - A reference to the array to be heapified.
+ * @param {number} length - The length of the array to be heapified.
+ * @param {Function} compare - A function that compares two elements of the array.
+ * @param {Function} swap - A function that swaps two elements of the array.
+ * @returns {Promise<void>} - A Promise that resolves when the array is heapified.
+ */
 async function heapify(arrayRef, length, compare, swap) {
     let start = Math.floor(length / 2);
     while (start >= 0) {
@@ -122,6 +204,15 @@ async function heapify(arrayRef, length, compare, swap) {
     }
 }   
 
+/**
+ * Sifts down an element in the heap to satisfy the heap property.
+ * @param {Object} arrayRef - A reference to the array containing the heap.
+ * @param {number} start - The index of the element to be sifted down.
+ * @param {number} end - The index of the last element in the heap.
+ * @param {Function} compare - A function that compares two elements of the array.
+ * @param {Function} swap - A function that swaps two elements of the array.
+ * @returns {Promise<void>} - A Promise that resolves when the element is sifted down.
+ */
 async function siftDown(arrayRef, start, end, compare, swap) {
     let root = start;
     while (root * 2 + 1 < end) {

@@ -32,6 +32,12 @@ export function useFractal() {
         }
     }, [isWind]);
 
+  // rerender canvas when theme changes
+  useEffect(() => {
+      clearCanvas()
+      drawTree(0.5,1,-90,angle, initialSize, reducer, depth)
+  }, [angle, theme, depth, initialSize, reducer, leafType, favorSide, wind, isWind])
+
     // This function will be recreated whenever the canvas context changes.
     const drawLine = useCallback((x1Percent, y1Percent, x2Percent, y2Percent, lineWidth) => {
       if (contextRef.current) {
@@ -58,6 +64,12 @@ export function useFractal() {
       }
     }, [theme]);
 
+      /**
+       * Draws a regular leaf shape on the canvas context.
+       * @param {CanvasRenderingContext2D} context - The canvas context to draw on.
+       * @param {number} size - The size of the leaf.
+       * @param {string} strokeStyle - The color of the leaf's stroke.
+       */
     const drawRegularLeaf = (context, size, strokeStyle) => {
         context.beginPath();
         context.moveTo(0, 0);
@@ -104,107 +116,143 @@ export function useFractal() {
       context.lineTo(size, 0 );
       context.closePath();
 
+      // create a gradient fill for the leaf
       const gradient = context.createLinearGradient(0, -size * 2, 0, 0);
       gradient.addColorStop(0, "#ff6600");
       gradient.addColorStop(1, "#b30000");
       context.fillStyle = gradient;
+
+      // set the stroke color and width
       context.strokeStyle = strokeStyle;
       context.lineWidth = size / 20;
+
+      // draw the stroke and fill of the leaf
       context.stroke();
       context.fill();
+
+      // draw the stem of the leaf
       context.beginPath();
       context.moveTo(0, 0);
       context.lineTo(0, -size * 2.5);
       context.stroke();
     }
 
+    /**
+     * Draws a cherry blossom leaf shape on the canvas context.
+     * @param {CanvasRenderingContext2D} context - The canvas context to draw on.
+     * @param {number} size - The size of the leaf.
+     * @param {string} strokeStyle - The color of the leaf's stroke.
+     */
     const drawCherryBlossomLeaf = (context, size, strokeStyle) => {
-        context.beginPath();
-        // Petal 1
-        context.moveTo(0, -size);
-        context.bezierCurveTo(-size*2, size, -size * 2, -size*3, 0, -size);
-        // Petal 2
-        context.moveTo(0, -size);
-        context.bezierCurveTo(size*2, size, size * 2, -size*3, 0, -size);
-        // Petal 3
-        context.moveTo(0, -size);
-        context.bezierCurveTo(-size*2, -size*3, size*2, -size*3, 0, -size);
-        // Petal 4
-        context.moveTo(0, -size);
-        context.bezierCurveTo(-size*2, size, size*2, size, 0, -size);
-        context.closePath();
+      // draw the leaf shape using bezier curves
+      context.beginPath();
+      // Petal 1
+      context.moveTo(0, -size);
+      context.bezierCurveTo(-size*2, size, -size * 2, -size*3, 0, -size);
+      // Petal 2
+      context.moveTo(0, -size);
+      context.bezierCurveTo(size*2, size, size * 2, -size*3, 0, -size);
+      // Petal 3
+      context.moveTo(0, -size);
+      context.bezierCurveTo(-size*2, -size*3, size*2, -size*3, 0, -size);
+      // Petal 4
+      context.moveTo(0, -size);
+      context.bezierCurveTo(-size*2, size, size*2, size, 0, -size);
+      context.closePath();
 
-        const gradient = context.createLinearGradient(0, -size, 0, size);
-        gradient.addColorStop(0, "#ffccff");
-        gradient.addColorStop(1, "#ff66cc");
-        context.fillStyle = gradient;
-        context.strokeStyle = strokeStyle;
-        context.lineWidth = size / 20;
-        context.stroke();
-        context.fill();
+      // create a gradient fill for the leaf
+      const gradient = context.createLinearGradient(0, -size, 0, size);
+      gradient.addColorStop(0, "#ffccff");
+      gradient.addColorStop(1, "#ff66cc");
+      context.fillStyle = gradient;
+
+      // set the stroke color and width
+      context.strokeStyle = strokeStyle;
+      context.lineWidth = size / 20;
+
+      // draw the stroke and fill of the leaf
+      context.stroke();
+      context.fill();
     }
 
-
-
+    /**
+     * Draws a leaf on the canvas context.
+     * @param {number} xPercent - The x-coordinate of the leaf's position as a percentage of the canvas width.
+     * @param {number} yPercent - The y-coordinate of the leaf's position as a percentage of the canvas height.
+     * @param {number} size - The size of the leaf.
+     * @param {number} angle - The angle of rotation for the leaf.
+     * @param {string} leafType - The type of leaf to draw.
+     */
     const drawLeaf = useCallback((xPercent, yPercent, size, angle, leafType) => {
-        const width = canvasRef.current.width;
-        const height = canvasRef.current.height;
+      const width = canvasRef.current.width;
+      const height = canvasRef.current.height;
 
-        const x = xPercent * width;
-        const y = yPercent * height;
+      const x = xPercent * width;
+      const y = yPercent * height;
 
-        if (isWind){
-          if(angle < 0) angle = 360 + angle;
-          if(wind > 0) {
-            angle = 90 + (Math.random() * 70 - 35)
-          }
-          if(wind < 0) {
-            angle = 270 + (Math.random() * 70 - 35)
-          }
+      // adjust the angle of the leaf based on wind direction and strength
+      if (isWind){
+        if(angle < 0) angle = 360 + angle;
+        if(wind > 0) {
+          angle = 90 + (Math.random() * 70 - 35)
         }
-
-        const context = contextRef.current;
-        context.save();
-        context.translate(x, y);
-        context.rotate(angle * Math.PI / 180);
-
-        switch(leafType) {
-            case "regular":
-                drawRegularLeaf(context, size, strokeStyle);
-                break;
-            case "maple":
-                drawMapleLeaf(context, size, strokeStyle);
-                break;
-            case "cherryBlossom":
-                drawCherryBlossomLeaf(context, size, strokeStyle);
-                break;
+        if(wind < 0) {
+          angle = 270 + (Math.random() * 70 - 35)
         }
+      }
 
-        context.restore();
+      const context = contextRef.current;
+      context.save();
+      context.translate(x, y);
+      context.rotate(angle * Math.PI / 180);
+
+      // draw the appropriate type of leaf
+      switch(leafType) {
+          case "regular":
+              drawRegularLeaf(context, size, strokeStyle);
+              break;
+          case "maple":
+              drawMapleLeaf(context, size, strokeStyle);
+              break;
+          case "cherryBlossom":
+              drawCherryBlossomLeaf(context, size, strokeStyle);
+              break;
+      }
+
+      context.restore();
     }, [theme, leafType, isWind, wind]);
 
-    useEffect(() => {
-        clearCanvas()
-        drawTree(0.5,1,-90,angle, initialSize, reducer, depth)
-    }, [angle, theme, depth, initialSize, reducer, leafType, favorSide, wind, isWind])
-
+    /**
+     * Draws a fractal tree on the canvas context.
+     * @param {number} x1 - The x-coordinate of the starting point of the tree branch.
+     * @param {number} y1 - The y-coordinate of the starting point of the tree branch.
+     * @param {number} initialAngle - The initial angle of the tree branch.
+     * @param {number} rotate - The angle of rotation for each subsequent branch.
+     * @param {number} size - The size of the tree branch.
+     * @param {number} reducer - The amount to reduce the size of each subsequent branch.
+     * @param {number} treeDepth - The depth of the fractal tree.
+     * @param {number} lineWidth - The width of the tree branch stroke.
+     */
     function drawTree(x1, y1, initialAngle, rotate, size, reducer, treeDepth, lineWidth = 5) {
-        if (treeDepth === 0)  return;
-        // make the x2 and y2 be between 0 and 1 for precetage representation
-        let x2 = x1 + (Math.cos(initialAngle * Math.PI / 180) * size);
-        let y2 = y1 + (Math.sin(initialAngle * Math.PI / 180) * size);
+      if (treeDepth === 0)  return;
+      // make the x2 and y2 be between 0 and 1 for precetage representation
+      let x2 = x1 + (Math.cos(initialAngle * Math.PI / 180) * size);
+      let y2 = y1 + (Math.sin(initialAngle * Math.PI / 180) * size);
 
-        if(isWind){
-          x2 = x1 + (Math.cos((initialAngle + wind) * Math.PI / 180) * size);
-          y2 = y1 + (Math.sin((initialAngle + wind) * Math.PI / 180) * size);
-        }
-        drawLine(x1, y1, x2, y2, lineWidth);
-        drawTree(x2, y2, initialAngle - rotate, rotate, size*reducer*(1-favorSide)*2, reducer, treeDepth - 1, lineWidth*reducer);
-        drawTree(x2, y2, initialAngle + rotate, rotate, size*reducer*favorSide*2, reducer, treeDepth - 1, lineWidth*reducer);
-        if (treeDepth === 1 && leafType !== "no") drawLeaf(x2, y2, size*500, initialAngle+90, leafType);
+      // adjust the position of the branch based on wind direction and strength
+      if(isWind){
+        x2 = x1 + (Math.cos((initialAngle + wind) * Math.PI / 180) * size);
+        y2 = y1 + (Math.sin((initialAngle + wind) * Math.PI / 180) * size);
+      }
+      drawLine(x1, y1, x2, y2, lineWidth);
+      drawTree(x2, y2, initialAngle - rotate, rotate, size*reducer*(1-favorSide)*2, reducer, treeDepth - 1, lineWidth*reducer);
+      drawTree(x2, y2, initialAngle + rotate, rotate, size*reducer*favorSide*2, reducer, treeDepth - 1, lineWidth*reducer);
+      if (treeDepth === 1 && leafType !== "no") drawLeaf(x2, y2, size*500, initialAngle+90, leafType);
     }
 
-
+    /**
+     * Clears the canvas context.
+     */
     function clearCanvas() {
       const context = contextRef.current;
       const width = canvasRef.current.width;
@@ -213,6 +261,9 @@ export function useFractal() {
       context.clearRect(0, 0, width, height);
     }
 
+    /**
+     * Downloads the canvas as a PNG image.
+     */
     function downloadCanvas() {
       const canvas = canvasRef.current;
       const link = document.createElement('a');
@@ -221,10 +272,10 @@ export function useFractal() {
       link.click();
     }
 
-
+    // set up props for the canvas and tree components
     const canvasProps = {drawLine, canvasRef, contextRef, clearCanvas}
     const treeProps = {angle, setAngle, depth, setDepth, initialSize, setInitialSize, reducer, setReducer, leafType, setLeafType, favorSide, setFavorSide, isWind, setIsWind, wind, setWind}
 
-
+    // return the canvas and tree props and the downloadCanvas function
     return {canvasProps, treeProps, downloadCanvas}
 }

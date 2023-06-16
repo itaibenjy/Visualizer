@@ -4,16 +4,20 @@ import { MDBContainer, MDBRange, MDBTooltip, MDBBtn, MDBIcon, MDBTypography} fro
 import { useSort } from '../hooks/useSort';
 import Select from "../components/Select";
 
+/**
+ * Renders the Sorting page, which displays a sorting board and various controls for sorting algorithms.
+ * @returns {JSX.Element} The Sorting page component.
+ */
 export default function Sorting() {
 
-    const {array, changeSize, size, colors, Algorithms, excecuteAlgorithm, speed, changeSpeed, isVisualizing, randomizeArray} = useSort();
+    const {actionProps, boardProps, algorithmProps} = useSort();
     const [selected, setSelected] = useState(0);
 
     return (
         <MDBContainer className="mb-5 pageContainer">
             <MDBTypography className="display-1" tag='h1'>Sorting</MDBTypography>
             <MDBContainer  className="d-flex justify-content-center my-3">
-                <Select disabled={isVisualizing} children={Algorithms.map((value) => value.name)} selected={Algorithms[selected].name} setSelected={setSelected}/>
+                <Select disabled={actionProps.isVisualizing} children={algorithmProps.Algorithms.map((value) => value.name)} selected={algorithmProps.Algorithms[selected].name} setSelected={setSelected}/>
             </MDBContainer>
             <MDBContainer  className="d-flex justify-content-center my-3" id="info">
                 <MDBBtn size="sm" color="danger" className="me-2"></MDBBtn> <MDBTypography className="my-1" tag='h6'>Swaping</MDBTypography>
@@ -23,19 +27,19 @@ export default function Sorting() {
             </MDBContainer>
             <MDBContainer  className="d-flex justify-content-center mt-3">
                 <MDBTypography variant='h6' className="mx-2">Array Size</MDBTypography>
-                <MDBRange  min='5' max='100' value={size} disabled={isVisualizing} onChange={changeSize} id='customRange'/>
+                <MDBRange  min='5' max='100' value={actionProps.size} disabled={actionProps.isVisualizing} onChange={actionProps.changeSize} id='customRange'/>
             </MDBContainer>
-            <SortingBoard array={array} colors={colors} className="mx-1" />
+            <SortingBoard {...boardProps} className="mx-1" />
             <MDBContainer  className="d-flex justify-content-center">
                 <MDBTypography variant='h6' className="mx-2">Sorting Speed</MDBTypography>
-                <MDBRange min='0' max='500' value={speed} onChange={changeSpeed} id='customRange' label=''/>
+                <MDBRange min='0' max='500' value={actionProps.speed} onChange={actionProps.changeSpeed} id='customRange' label=''/>
             </MDBContainer>
             <MDBContainer  className="d-flex justify-content-center mt-2 mb-4 pb-2">
                 <MDBTooltip title='Randomize Array' tag='span' placement="bottom">
-                    <MDBBtn floating color="danger" className="mx-1" disabled={isVisualizing} onClick={randomizeArray}><MDBIcon fas size="lg" icon="random" /></MDBBtn>
+                    <MDBBtn floating color="danger" className="mx-1" disabled={actionProps.isVisualizing} onClick={actionProps.randomizeArray}><MDBIcon fas size="lg" icon="random" /></MDBBtn>
                 </MDBTooltip>
                 <MDBTooltip title='Start Visualizing' tag='span' placement="bottom">
-                    <MDBBtn floating color="success" className="mx-1"  disabled={isVisualizing} onClick={() => excecuteAlgorithm(Algorithms[selected])}><MDBIcon fas size="lg" icon="play" /></MDBBtn>
+                    <MDBBtn floating color="success" className="mx-1"  disabled={actionProps.isVisualizing} onClick={() => algorithmProps.excecuteAlgorithm(algorithmProps.Algorithms[selected])}><MDBIcon fas size="lg" icon="play" /></MDBBtn>
                 </MDBTooltip>
             </MDBContainer>
         </MDBContainer>

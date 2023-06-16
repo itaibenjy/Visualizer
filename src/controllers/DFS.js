@@ -1,4 +1,11 @@
-
+/**
+ * Performs a depth-first search algorithm on a grid to find a path from a start node to an end node.
+ * @param {React.RefObject} gridRef - A reference to the grid component.
+ * @param {Object} start - The starting node.
+ * @param {Object} end - The ending node.
+ * @param {Function} wait - A function that returns a promise that resolves after a certain amount of time.
+ * @returns {Object} An object containing the path and a boolean indicating whether the path was found.
+ */
 export default async function DFS(gridRef, start, end, wait) {
     const grid = gridRef.current;
     const stack = [];
@@ -29,6 +36,12 @@ export default async function DFS(gridRef, start, end, wait) {
     return {path, found};
 }
 
+/**
+ * Returns an array of neighboring nodes that are not walls and have not been visited.
+ * @param {Array} grid - The grid of nodes.
+ * @param {Object} node - The node to get neighbors for.
+ * @returns {Array} An array of neighboring nodes.
+ */
 function getNeighbors(grid, node) {
     const neighbors = [];
     const { row, col } = node;
@@ -42,6 +55,11 @@ function getNeighbors(grid, node) {
     return neighbors.filter(neighbor => !neighbor.isWall && !neighbor.isVisited);
 }
 
+/**
+ * Returns an array of nodes representing the path from the end node to the start node.
+ * @param {Object} end - The end node.
+ * @returns {Array} An array of nodes representing the path.
+ */
 function getPath(end) {
     const path = [];
     let currentNode = end;
