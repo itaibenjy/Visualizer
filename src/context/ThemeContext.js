@@ -25,7 +25,7 @@ function ThemeProvider({ children }) {
         setTheme(savedTheme);
       }
     } catch (e) {
-      console.log(e)
+      // ignore
     }
   }, []);
 

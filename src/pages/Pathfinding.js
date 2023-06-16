@@ -1,4 +1,4 @@
-import { useEffect, useState} from "react";
+import { useState} from "react";
 import PathBoard from "../components/Pathfinding/PathGrid";
 import { MDBContainer, MDBRange, MDBTooltip, MDBBtn, MDBIcon, MDBTypography} from "mdb-react-ui-kit"
 import { usePath } from '../hooks/usePath';
@@ -8,7 +8,7 @@ import $ from 'jquery';
 
 export default function Pathfinding() {
 
-    const {speed, changeSpeed, startVisualizing, isVisualizing, Algorithms,  grid, updateColor, cellSize, cols, rows, setIsMouseDown, isMouseDown, clearAll, clearVisited, mazeGen, setSetType, selected, setSelected, realTimeUpdate} = usePath()
+    const {gridProps, speed, changeSpeed, startVisualizing, isVisualizing, Algorithms, clearAll, clearVisited, mazeGen, selected, setSelected, agentsSelected, setAgentsSelected} = usePath()
     const [hidden, setHidden] = useState(false);
 
     function  changeCard() {
@@ -26,7 +26,7 @@ export default function Pathfinding() {
     }
 
     return (<div className="pathfinding pageContainer" id="all">
-        <PathBoard {...{grid, updateColor, cellSize, cols, rows, setIsMouseDown, isMouseDown, setSetType, realTimeUpdate}}  id="pathGrid"/>
+        <PathBoard {...gridProps}  id="pathGrid"/>
         <MDBContainer id="pathCard" className={`mb-5 mx-auto myCard semi-transparent ${hidden ? "d-flex justify-content-center align-items-center" : ""}` }>
             {!hidden  &&
             <MDBContainer  className="d-flex justify-content-center mb-3">
@@ -34,7 +34,8 @@ export default function Pathfinding() {
             </MDBContainer>
             }
             <MDBContainer  className="d-flex justify-content-center my-3" >
-                <Select disabled={isVisualizing} children={Algorithms.map((value) => value.name)} selected={Algorithms[selected].name} setSelected={setSelected}/>
+                <Select className="mx-1" disabled={isVisualizing} children={Algorithms.map((value) => value.name)} selected={Algorithms[selected].name} setSelected={setSelected}/>
+                {selected === 3 && <Select className="mx-1" disabled={isVisualizing} children={[1,2,3,4,5,6,7,8,9,10,11,12]} selected={agentsSelected+1} setSelected={setAgentsSelected}/>}
             </MDBContainer>
             {!hidden  &&
             <MDBContainer  className="d-flex justify-content-center my-3" id="info">

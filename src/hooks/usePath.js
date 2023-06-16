@@ -4,6 +4,7 @@ import BFS from '../controllers/BFS';
 import Astar from '../controllers/Astar';
 import DFS from '../controllers/DFS';
 import MazeGen from '../controllers/MazeGen';
+import SwarmSearch from '../controllers/Swarm';
 
 export function usePath() {
 
@@ -31,6 +32,7 @@ export function usePath() {
     const [setType, setSetType] = useState("wall"); // wall, start, end
     const [afterVisualize, setAfterVisualize] = useState(false);
     const [selected, setSelected] = useState(0);
+    const [agentsSelected, setAgentsSelected] = useState(4);
 
 
     const [grid, setGrid] = useState([]);
@@ -202,7 +204,7 @@ export function usePath() {
     async function excecuteAlgorithm(algorithm){
         setIsVisualizing(true);
         clearVisited();
-        const path = await algorithm.function(gridRef, startNode, endNode, wait);
+        const path = await algorithm.function(gridRef, startNode, endNode, wait, agentsSelected+1);
         if (path.found){
             await pathFind(path.path);
         }
@@ -281,9 +283,15 @@ export function usePath() {
         {
             name: "Depth First Search",
             function: DFS
+        },
+        {
+            name: "Swarm (Random)",
+            function: SwarmSearch
         }
     ]
 
+    const gridProps = {grid, updateColor, cellSize, cols, rows, setIsMouseDown, isMouseDown, setSetType, realTimeUpdate}
 
-    return {speed, changeSpeed, startVisualizing, isVisualizing, Algorithms,  grid, updateColor, cellSize, cols, rows, setIsMouseDown, isMouseDown, clearVisited, clearAll, mazeGen,  setSetType, selected, setSelected, realTimeUpdate}
+
+    return {gridProps, speed, changeSpeed, startVisualizing, isVisualizing, Algorithms, clearVisited, clearAll, mazeGen, selected, setSelected, agentsSelected, setAgentsSelected}
 }
