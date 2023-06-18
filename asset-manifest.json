@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Visualizer/static/css/main.b5871209.css",
-    "main.js": "/Visualizer/static/js/main.b3a0f4da.js",
+    "main.css": "/Visualizer/static/css/main.d14bffe7.css",
+    "main.js": "/Visualizer/static/js/main.acb47a4e.js",
     "static/media/fa-solid-900.ttf": "/Visualizer/static/media/fa-solid-900.4a2cd718d7031b732e76.ttf",
     "static/media/fa-brands-400.ttf": "/Visualizer/static/media/fa-brands-400.150de8eaa454d669c405.ttf",
     "static/media/fa-solid-900.woff2": "/Visualizer/static/media/fa-solid-900.bb975c966c37455a1bc3.woff2",
@@ -18,17 +18,30 @@
     "static/media/logo.png": "/Visualizer/static/media/logo.606c095f12603ace5f10.png",
     "static/media/X.png": "/Visualizer/static/media/X.be846d746a4470db1128.png",
     "static/media/fa-v4compatibility.ttf": "/Visualizer/static/media/fa-v4compatibility.0e3a648be390bd8cb094.ttf",
+    "static/media/Astar.md": "/Visualizer/static/media/Astar.1bc0310d55a3e7adeffe.md",
+    "static/media/Swarm.md": "/Visualizer/static/media/Swarm.6e116de5f2bb6a336427.md",
     "static/media/fa-v4compatibility.woff2": "/Visualizer/static/media/fa-v4compatibility.68577e40f3e70067b5da.woff2",
-    "static/media/TicTacToeAIMid.txt": "/Visualizer/static/media/TicTacToeAIMid.9ab4a11c158cc0fb304f.txt",
-    "static/media/TicTacToeAIStart.txt": "/Visualizer/static/media/TicTacToeAIStart.c62f48a3de2660fb6eaf.txt",
+    "static/media/BFS.md": "/Visualizer/static/media/BFS.97167bb75acbf8a1ecef.md",
+    "static/media/Minimax.md": "/Visualizer/static/media/Minimax.e88f9c0c8f6f1731089e.md",
+    "static/media/DFS.md": "/Visualizer/static/media/DFS.3d5a7f166a3c63fc042d.md",
+    "static/media/Sudoku.md": "/Visualizer/static/media/Sudoku.816f3c04b086d6459f8a.md",
+    "static/media/HeapSort.md": "/Visualizer/static/media/HeapSort.50ab1e514b7450e5cf2e.md",
+    "static/media/FractalTree.md": "/Visualizer/static/media/FractalTree.3a4e4c99e9bb9cd8c053.md",
+    "static/media/QuickSort.md": "/Visualizer/static/media/QuickSort.6813d4f4f874c1acc8b4.md",
+    "static/media/TicTacToeAIMid.txt": "/Visualizer/static/media/TicTacToeAIMid.e26998b6ee6c3c1cfd04.txt",
+    "static/media/SelectionSort.md": "/Visualizer/static/media/SelectionSort.8df414fc2b789b62a2cf.md",
+    "static/media/InsertionSort.md": "/Visualizer/static/media/InsertionSort.b01db4198d39dba69a01.md",
+    "static/media/MergeSort.md": "/Visualizer/static/media/MergeSort.7338157f19c01e661bde.md",
+    "static/media/BubbleSort.md": "/Visualizer/static/media/BubbleSort.8b59af766b710fbd5019.md",
+    "static/media/TicTacToeAIStart.txt": "/Visualizer/static/media/TicTacToeAIStart.d10c71d78d347a0788a1.txt",
     "index.html": "/Visualizer/index.html",
-    "static/media/TicTacToeAIWin.txt": "/Visualizer/static/media/TicTacToeAIWin.4ba11358a425c42e1dd4.txt",
-    "static/media/TicTacToeAIDraw.txt": "/Visualizer/static/media/TicTacToeAIDraw.99e63bd8e8af0158a444.txt",
-    "main.b5871209.css.map": "/Visualizer/static/css/main.b5871209.css.map",
-    "main.b3a0f4da.js.map": "/Visualizer/static/js/main.b3a0f4da.js.map"
+    "static/media/TicTacToeAIWin.txt": "/Visualizer/static/media/TicTacToeAIWin.df1a6e122bbf780fdc90.txt",
+    "static/media/TicTacToeAIDraw.txt": "/Visualizer/static/media/TicTacToeAIDraw.753f72e0978eb2fe10bb.txt",
+    "main.d14bffe7.css.map": "/Visualizer/static/css/main.d14bffe7.css.map",
+    "main.acb47a4e.js.map": "/Visualizer/static/js/main.acb47a4e.js.map"
   },
   "entrypoints": [
-    "static/css/main.b5871209.css",
-    "static/js/main.b3a0f4da.js"
+    "static/css/main.d14bffe7.css",
+    "static/js/main.acb47a4e.js"
   ]
 }
