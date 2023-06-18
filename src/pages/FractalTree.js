@@ -3,6 +3,8 @@ import { MDBBtn, MDBContainer, MDBRange, MDBTypography, MDBRadio, MDBCheckbox } 
 import FractalCanvas from "../components/FractalTree/FractalCanvas";
 import {useFractal} from "../hooks/useFractal"
 import {useState} from "react"
+import InfoButton from "../components/InfoButton";
+import FractalTreeInfo from "../data/info/FractalTree.md"
 
 /**
  * Renders the Fractal Tree page.
@@ -40,7 +42,7 @@ export default function FractalTree() {
     }
 
     // Render the Fractal Tree page
-    return (
+    return (<>
         <MDBContainer className="p-1 mb-5 pageContainer">
             <MDBTypography tag='h1' style={{fontFamily: 'Monomania'}} className='display-1'>Fractal Trees</MDBTypography>
             <MDBContainer id="Two-cards" className=" my-5">
@@ -116,5 +118,6 @@ export default function FractalTree() {
                 <MDBBtn onClick={downloadCanvas} className="mx-auto">Download Image</MDBBtn>
             </MDBContainer> 
         </MDBContainer>
-    );
+        <InfoButton markdownFiles={[FractalTreeInfo]}  title="Fractal Tree Information"/>
+    </>);
 }

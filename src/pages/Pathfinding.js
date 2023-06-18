@@ -3,7 +3,15 @@ import PathBoard from "../components/Pathfinding/PathGrid";
 import { MDBContainer, MDBRange, MDBTooltip, MDBBtn, MDBIcon, MDBTypography} from "mdb-react-ui-kit"
 import { usePath } from '../hooks/usePath';
 import Select from "../components/Select";
+import InfoButton from "../components/InfoButton";
 import $ from 'jquery';
+
+// Import markdown files
+import AStar from "../data/info/Astar.md"
+import BFS from "../data/info/BFS.md"
+import DFS from "../data/info/DFS.md"
+import Swarm from "../data/info/Swarm.md"
+
 
 /**
  * Pathfinding page component
@@ -39,7 +47,7 @@ export default function Pathfinding() {
     }
 
     // Return Pathfinding page JSX element
-    return (
+    return (<>
         <div className="pathfinding pageContainer" id="all">
             <PathBoard {...gridProps}  id="pathGrid"/>
             <MDBContainer id="pathCard" className={`mb-5 mx-auto myCard semi-transparent ${hidden ? "d-flex justify-content-center align-items-center" : ""}` }>
@@ -50,7 +58,11 @@ export default function Pathfinding() {
                 }
                 <MDBContainer  className="d-flex justify-content-center my-3" >
                     <Select className="mx-1" disabled={actionProps.isVisualizing} children={algorithmProps.Algorithms.map((value) => value.name)} selected={algorithmProps.Algorithms[algorithmProps.selected].name} setSelected={algorithmProps.setSelected}/>
-                    {algorithmProps.selected === 3 && <Select className="mx-1" disabled={algorithmProps.isVisualizing} children={[1,2,3,4,5,6,7,8,9,10,11,12]} selected={algorithmProps.agentsSelected+1 + " Agents"} setSelected={algorithmProps.setAgentsSelected}/>}
+                    {algorithmProps.selected === 3 &&
+                    <div className="ms-1">
+                     <Select disabled={algorithmProps.isVisualizing} color="secondary" children={[1,2,3,4,5,6,7,8,9,10,11,12]} selected={algorithmProps.agentsSelected+1 + " Agents"} setSelected={algorithmProps.setAgentsSelected}/>
+                    </div>
+                    }
                 </MDBContainer>
                 {!hidden  &&
                 <MDBContainer  className="d-flex justify-content-center my-3" id="info">
@@ -84,6 +96,12 @@ export default function Pathfinding() {
                 </MDBContainer>
             </MDBContainer>
         </div>
-    )
+            {/* Info button */}
+            <InfoButton 
+             title="Pathfinding Information"
+             markdownFiles={[AStar, BFS, DFS, Swarm]}
+             titles={["A* Search", "Breadth First Search", "Depth First Search", "Swarm Search"]}
+             />
+    </>)
 
 }

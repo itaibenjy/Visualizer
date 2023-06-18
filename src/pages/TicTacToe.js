@@ -1,9 +1,11 @@
 import { MDBBtn, MDBContainer, MDBRange, MDBTypography, MDBIcon, MDBTooltip } from "mdb-react-ui-kit";
 import TicTacToeBoard from "../components/TicTacToe/TicTacToeBoard";
 import Alert from "../components/Alert";
+import InfoButton from "../components/InfoButton";
 
 import { useTicTacToe } from '../hooks/useTicTacToe';
 import { useTyping } from "../hooks/useTyping";
+import Minimax from "../data/info/Minimax.md"
 
 
 
@@ -16,7 +18,8 @@ export default function TicTacToe() {
     const props = {board, isPlayerTurn, playerChose};
     const text = useTyping(aiSentence);
 
-    return (<MDBContainer className="p-1 mb-5 pageContainer">
+    return (<>
+    <MDBContainer className="p-1 mb-5 pageContainer">
     <MDBTypography tag='h1' style={{fontFamily: 'Monomania'}} className='display-1'>TicTacToe</MDBTypography>
         <MDBContainer  className="d-flex justify-content-center">
             {aiSentence && <Alert message={text} type="info" />}
@@ -33,5 +36,6 @@ export default function TicTacToe() {
             </MDBTooltip>
         </MDBContainer>
         </MDBContainer>
-    );
+        <InfoButton markdownFiles={[Minimax]} title="Minimax Algorithm (Tic Tac Toe)" />
+    </>);
 }

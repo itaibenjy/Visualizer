@@ -9,10 +9,10 @@ import { MDBDropdown, MDBDropdownMenu, MDBDropdownToggle, MDBDropdownItem } from
  * @param {function} setSelected - A function to call when an option is selected.
  * @returns {JSX.Element} - A dropdown select component.
  */
-export default function Select({disabled, children, selected, setSelected}) {
+export default function Select({disabled, children, selected, setSelected, color="primary"}) {
   return (
     <MDBDropdown>
-      <MDBDropdownToggle disabled={disabled}>{selected}</MDBDropdownToggle>
+      <MDBDropdownToggle disabled={disabled} color={color}>{selected}</MDBDropdownToggle>
       <MDBDropdownMenu>
         {children.map((child, index) => {
             return <MDBDropdownItem key={index} onClick={(e) => {e.preventDefault(); setSelected(index)}} link>{child}</MDBDropdownItem>

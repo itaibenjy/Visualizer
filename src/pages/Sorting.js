@@ -3,6 +3,15 @@ import SortingBoard from "../components/Sorting/SortingBoard"
 import { MDBContainer, MDBRange, MDBTooltip, MDBBtn, MDBIcon, MDBTypography} from "mdb-react-ui-kit"
 import { useSort } from '../hooks/useSort';
 import Select from "../components/Select";
+import InfoButton from "../components/InfoButton";
+
+// markdown files
+import BubbleSort from '../data/info/BubbleSort.md';
+import MergeSort from '../data/info/MergeSort.md';
+import QuickSort from '../data/info/QuickSort.md';
+import InsertionSort from '../data/info/InsertionSort.md';
+import SelectionSort from '../data/info/SelectionSort.md';
+import HeapSort from '../data/info/HeapSort.md';
 
 /**
  * Renders the Sorting page, which displays a sorting board and various controls for sorting algorithms.
@@ -13,7 +22,7 @@ export default function Sorting() {
     const {actionProps, boardProps, algorithmProps} = useSort();
     const [selected, setSelected] = useState(0);
 
-    return (
+    return (<>
         <MDBContainer className="mb-5 pageContainer">
             <MDBTypography className="display-1" tag='h1'>Sorting</MDBTypography>
             <MDBContainer  className="d-flex justify-content-center my-3">
@@ -43,6 +52,11 @@ export default function Sorting() {
                 </MDBTooltip>
             </MDBContainer>
         </MDBContainer>
-    )
+        <InfoButton
+         title="Sorting Information"
+         markdownFiles={[BubbleSort, MergeSort, QuickSort, InsertionSort, SelectionSort, HeapSort]}
+         titles={["Bubble Sort", "Merge Sort", "Quick Sort", "Insertion Sort", "Selection Sort", "Heap Sort"]}
+         />
+    </>)
 
 }
