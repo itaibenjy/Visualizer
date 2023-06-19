@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Visualizer/static/css/main.d14bffe7.css",
-    "main.js": "/Visualizer/static/js/main.acb47a4e.js",
+    "main.js": "/Visualizer/static/js/main.ffe5a622.js",
     "static/media/fa-solid-900.ttf": "/Visualizer/static/media/fa-solid-900.4a2cd718d7031b732e76.ttf",
     "static/media/fa-brands-400.ttf": "/Visualizer/static/media/fa-brands-400.150de8eaa454d669c405.ttf",
     "static/media/fa-solid-900.woff2": "/Visualizer/static/media/fa-solid-900.bb975c966c37455a1bc3.woff2",
@@ -19,7 +19,7 @@
     "static/media/X.png": "/Visualizer/static/media/X.be846d746a4470db1128.png",
     "static/media/fa-v4compatibility.ttf": "/Visualizer/static/media/fa-v4compatibility.0e3a648be390bd8cb094.ttf",
     "static/media/Astar.md": "/Visualizer/static/media/Astar.1bc0310d55a3e7adeffe.md",
-    "static/media/Swarm.md": "/Visualizer/static/media/Swarm.6e116de5f2bb6a336427.md",
+    "static/media/Swarm.md": "/Visualizer/static/media/Swarm.db919ff30df467aa182d.md",
     "static/media/fa-v4compatibility.woff2": "/Visualizer/static/media/fa-v4compatibility.68577e40f3e70067b5da.woff2",
     "static/media/BFS.md": "/Visualizer/static/media/BFS.97167bb75acbf8a1ecef.md",
     "static/media/Minimax.md": "/Visualizer/static/media/Minimax.e88f9c0c8f6f1731089e.md",
@@ -27,7 +27,10 @@
     "static/media/Sudoku.md": "/Visualizer/static/media/Sudoku.816f3c04b086d6459f8a.md",
     "static/media/HeapSort.md": "/Visualizer/static/media/HeapSort.50ab1e514b7450e5cf2e.md",
     "static/media/FractalTree.md": "/Visualizer/static/media/FractalTree.3a4e4c99e9bb9cd8c053.md",
+    "static/media/PathfindingControls.md": "/Visualizer/static/media/PathfindingControls.89a27ff3a56b94bd0629.md",
     "static/media/QuickSort.md": "/Visualizer/static/media/QuickSort.6813d4f4f874c1acc8b4.md",
+    "static/media/PathfindingBasic.md": "/Visualizer/static/media/PathfindingBasic.e3cbf361c878067d932b.md",
+    "static/media/PathfindingRealTime.md": "/Visualizer/static/media/PathfindingRealTime.98cb9d2a57ce6c6085f0.md",
     "static/media/TicTacToeAIMid.txt": "/Visualizer/static/media/TicTacToeAIMid.e26998b6ee6c3c1cfd04.txt",
     "static/media/SelectionSort.md": "/Visualizer/static/media/SelectionSort.8df414fc2b789b62a2cf.md",
     "static/media/InsertionSort.md": "/Visualizer/static/media/InsertionSort.b01db4198d39dba69a01.md",
@@ -38,10 +41,10 @@
     "static/media/TicTacToeAIWin.txt": "/Visualizer/static/media/TicTacToeAIWin.df1a6e122bbf780fdc90.txt",
     "static/media/TicTacToeAIDraw.txt": "/Visualizer/static/media/TicTacToeAIDraw.753f72e0978eb2fe10bb.txt",
     "main.d14bffe7.css.map": "/Visualizer/static/css/main.d14bffe7.css.map",
-    "main.acb47a4e.js.map": "/Visualizer/static/js/main.acb47a4e.js.map"
+    "main.ffe5a622.js.map": "/Visualizer/static/js/main.ffe5a622.js.map"
   },
   "entrypoints": [
     "static/css/main.d14bffe7.css",
-    "static/js/main.acb47a4e.js"
+    "static/js/main.ffe5a622.js"
   ]
 }
