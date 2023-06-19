@@ -1,7 +1,13 @@
-#### How To Use Our Pathfinding Visualization Tool
+### How To Use Our Pathfinding Visualization Tool
 
 The following guide will assist you in understanding how to interact with our React-based Pathfinding Visualizer. As you follow along, make sure to refer to the accompanying GIF for visual assistance.
 
+
+![Pathfinding Visualizer Basics GIF](https://github.com/itaibenjy/Visualizer/blob/master/src/assets/images/Tutorial/Basic.gif?raw=true)
+
+---
+
+### Further Explanation
 
 **Step 1: Familiarize Yourself with the Grid**
 
@@ -19,7 +25,6 @@ By default, there are start and end points marked on your grid. To move these po
 
 To remove a wall, follow a process similar to creating a wall. Click and hold your mouse over a wall cell, then drag it across the wall that you want to erase. The cells will return to their empty state.
 
-![Pathfinding Visualizer Basics GIF](https://example.com/pathfinding-visualizer.gif)
 
 Remember, the purpose of this tool is to help you visualize different pathfinding algorithms. You can set up the grid with walls and points, and then run the algorithm to see how it finds a path from the start to the end point. This gives you a practical understanding of how these algorithms operate. 
 

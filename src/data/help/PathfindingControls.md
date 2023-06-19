@@ -1,6 +1,12 @@
-#### Exploring the Controls of Our Pathfinding Visualization Tool
+### Exploring the Controls of Our Pathfinding Visualization Tool
 
 Our Pathfinding Visualizer isn't just a static tool. You have multiple interactive controls to modify your experience and better understand the pathfinding algorithms. The accompanying GIF will help you visualize these controls. 
+
+![Pathfinding Visualizer Controls GIF](https://github.com/itaibenjy/Visualizer/blob/master/src/assets/images/Tutorial/Controlls.gif?raw=true)
+
+---
+
+### Further Explanation
 
 **Step 1: Adjusting Visualization Speed**
 
@@ -26,6 +32,5 @@ There are two ways to clear your grid:
 
 Once you have set up your grid and selected your algorithm, click the "Start Visualizing" button. You will see the chosen algorithm in action, finding a path from the start to the end point.
 
-![Pathfinding Visualizer Controls GIF](https://example.com/pathfinding-visualizer.gif)
 
 Remember, the goal of this tool is to provide a hands-on experience and understanding of pathfinding algorithms. Feel free to explore, experiment, and learn!

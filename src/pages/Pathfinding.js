@@ -4,13 +4,19 @@ import { MDBContainer, MDBRange, MDBTooltip, MDBBtn, MDBIcon, MDBTypography} fro
 import { usePath } from '../hooks/usePath';
 import Select from "../components/Select";
 import InfoButton from "../components/InfoButton";
+import HelpButton from "../components/HelpButton";
 import $ from 'jquery';
 
 // Import markdown files
+// info
 import AStar from "../data/info/Astar.md"
 import BFS from "../data/info/BFS.md"
 import DFS from "../data/info/DFS.md"
 import Swarm from "../data/info/Swarm.md"
+// help
+import Basics from "../data/help/PathfindingBasic.md"
+import Controls from "../data/help/PathfindingControls.md"
+import RealTime from "../data/help/PathfindingRealTime.md"
 
 
 /**
@@ -101,6 +107,12 @@ export default function Pathfinding() {
              title="Pathfinding Information"
              markdownFiles={[AStar, BFS, DFS, Swarm]}
              titles={["A* Search", "Breadth First Search", "Depth First Search", "Swarm Search"]}
+             />
+            {/* Help button */}
+            <HelpButton 
+             title="How To use Pathfinding Visualizer"
+             markdownFiles={[Basics, Controls, RealTime]}
+             titles={["The Basics", "Controls", "Real Time"]}
              />
     </>)
 
