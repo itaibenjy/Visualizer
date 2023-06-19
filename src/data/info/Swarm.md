@@ -25,7 +25,7 @@ Swarm search is especially effective in open spaces with less obstacles, as it a
 3. **Limited Search Strategy:** Swarm search may have a limited search strategy compared to other advanced algorithms.
 4. **Sensitivity to Initial Conditions:** Swarm search may yield different results based on the initial conditions and configuration of agents.
 
-### Stripped and Commented Code Example
+### Swarm Implementation in JavaScript
 
 ```js
 class Agent {
