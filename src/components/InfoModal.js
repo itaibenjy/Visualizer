@@ -7,14 +7,18 @@ import {
   MDBModalHeader,
   MDBModalTitle,
   MDBModalBody,
-  MDBModalFooter
+  MDBModalFooter,
+  MDBContainer,
+  MDBSpinner
 } from 'mdb-react-ui-kit';
 import Markdown from './Markdown';
 import Tabs from './Tabs';
 
 export default function InfoModal({show, setShow, markdownFiles, title, titles}) {
 
-  // read the markdown files from the markdownFiles array to markdown array
+  const [markdown, setMarkdown] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   async function getMarkdown() {
     let markdown = [];
     for (let i = 0; i < markdownFiles.length; i++) {
@@ -25,11 +29,12 @@ export default function InfoModal({show, setShow, markdownFiles, title, titles})
     return markdown;
   }
 
-  const [markdown, setMarkdown] = useState([]);
-
   useEffect(() => {
-    getMarkdown().then((markdown) => setMarkdown(markdown));
-  }, []);
+    getMarkdown().then(markdown => {
+      setMarkdown(markdown);
+      setIsLoading(false);
+    });
+  }, [markdownFiles]);
 
 
   return (
@@ -42,10 +47,13 @@ export default function InfoModal({show, setShow, markdownFiles, title, titles})
               <MDBBtn className='btn-close' color='none' onClick={() => setShow(false)}></MDBBtn>
             </MDBModalHeader>
             <MDBModalBody>
-              {markdown.length < 2 ?
+              {isLoading && <MDBContainer className='d-flex justify-content-center'> <MDBSpinner style={{ width: '5rem', height: '5rem' }} text='primary' /> </MDBContainer>}
+              {!isLoading &&
+               (markdown.length < 2 ?
               <Markdown markdown={markdown[0]} />
               :
                 <Tabs titles={titles} contents={markdown.map(mark => <Markdown markdown={mark}/ >)} />
+              )
               }
             </MDBModalBody>
             <MDBModalFooter>

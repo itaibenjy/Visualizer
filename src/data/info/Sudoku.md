@@ -60,4 +60,4 @@ function sovler () {
 }
 ```
 
-### At the final version on the app every set of board should be in an animated function to visualize the solving process.
+**At the final version on the app every set of board should be in an animated function to visualize the solving process.**

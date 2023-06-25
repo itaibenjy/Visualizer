@@ -36,7 +36,8 @@ export default function Tabs({titles, contents}) {
         {contents.map((content, index) => {
             return (
                 <MDBTabsPane key={index} show={fillActive === `tab${index + 1}`}>
-                    {content}
+                  {/* render only if active */}
+                  {fillActive === `tab${index + 1}` && content}
                 </MDBTabsPane>
             )}
         )}
