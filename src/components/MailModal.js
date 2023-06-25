@@ -89,7 +89,7 @@ export default function MailModal({basicModal, setBasicModal}) {
             <MDBValidation onSubmit={sendEmail}>
             <MDBModalHeader>
               <MDBModalTitle>Email Me</MDBModalTitle>
-              <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
+              <MDBBtn className='btn-close' color='none' type='reset' onClick={toggleShow}></MDBBtn>
             </MDBModalHeader>
             <MDBModalBody> 
               <MDBContainer >
